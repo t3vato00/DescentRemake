@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public class PlayerTarget : MonoBehaviour {
     private static List<PlayerTarget> playerList = new List<PlayerTarget>();
 
-    public IEnumerable<PlayerTarget> players
+    static public IEnumerable<PlayerTarget> players
     {
         get { return playerList; }
     }
