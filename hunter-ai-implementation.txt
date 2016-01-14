@@ -1,1 +1,0 @@
-This file contains implementation of hunter ai. Hops2 add.
