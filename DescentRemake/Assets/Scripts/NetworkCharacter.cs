@@ -13,21 +13,20 @@ public class NetworkCharacter : Photon.MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		/*if (photonView.isMine) {
+	void FixedUpdate () {
+		if (photonView.isMine) {
 		} 
 		else {
-			transform.position = Vector3.Lerp(transform.position, realPosition, 0.2f);
-			transform.rotation = Quaternion.Lerp(transform.rotation, realRotation, 0.2f);
-		}*/
+			transform.position = Vector3.Lerp(transform.position, realPosition, 0.1f);
+			transform.rotation = Quaternion.Lerp(transform.rotation, realRotation, 0.1f);
+		}
 
 	}
 
 
 
 	public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
-
-		if(stream.isWriting){
+        if(stream.isWriting){
 			//our player
 
 			stream.SendNext(transform.position);
@@ -36,8 +35,8 @@ public class NetworkCharacter : Photon.MonoBehaviour {
 		}
 		else{
 			//someones player
-			transform.position = (Vector3)stream.ReceiveNext();
-			transform.rotation = (Quaternion)stream.ReceiveNext();
+			realPosition = (Vector3)stream.ReceiveNext();
+			realRotation = (Quaternion)stream.ReceiveNext();
 
 		}
 	}

@@ -13,9 +13,9 @@ public class NetworkManager : MonoBehaviour {
     int maxChatMessages = 10;
 
 	void Start () {
-		 spawnSpots = GameObject.FindObjectsOfType<SpawnSpot> ();
-         PhotonNetwork.player.name = PlayerPrefs.GetString("Username", "Awesome player");
-         chatMessages = new List<string>();
+		spawnSpots = GameObject.FindObjectsOfType<SpawnSpot> ();
+        PhotonNetwork.player.name = PlayerPrefs.GetString("Username", "Awesome player");
+        chatMessages = new List<string>();
 
 	}
 
@@ -119,14 +119,18 @@ public class NetworkManager : MonoBehaviour {
 		PhotonNetwork.Instantiate ("Player", mySpawnSpot.transform.position, transform.rotation, 0);
 		//came.enabled = false;
 		myPlayerGO.GetComponent<NetworkCharacter> ().enabled = true;
-		//myPlayerGO.GetComponent<PlayerControl> ().enabled = true;
-		//myPlayerGO.GetComponentInChildren<PlayerShooting> ().enabled = true;
-		//myPlayerGO.GetComponentInChildren<PlayerHealth> ().enabled = true;
+        myPlayerGO.GetComponent<PlayerMovement> ().enabled = true;
+        myPlayerGO.AddComponent<Camera>();
+        //Instantiate(gameObject.AddComponent<Camera>(), transform.position, Quaternion.identity) as Camera;
 
-		//GameObject.GetComponent<CameraFollow> ().enabled = true;
-		//myPlayerGO.GetComponentInChildren<CameraFollow>().enabled = true;
+        //myPlayerGO.GetComponent<PlayerControl> ().enabled = true;
+        //myPlayerGO.GetComponentInChildren<PlayerShooting> ().enabled = true;
+        //myPlayerGO.GetComponentInChildren<PlayerHealth> ().enabled = true;
 
-	
-	}
+        //GameObject.GetComponent<CameraFollow> ().enabled = true;
+        //myPlayerGO.GetComponentInChildren<CameraFollow>().enabled = true;
+
+
+    }
 
 }
