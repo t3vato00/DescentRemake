@@ -16,6 +16,10 @@ ModelImporter:
     100016: NurbsPath_001
     100018: windowFrame
     100020: frameShape
+    100022: Monitor
+    100024: MonitorMain
+    100026: MonitorSide1
+    100028: MonitorSide2
     400000: BezierCircle
     400002: bow
     400004: //RootNode
@@ -27,6 +31,10 @@ ModelImporter:
     400016: NurbsPath_001
     400018: windowFrame
     400020: frameShape
+    400022: Monitor
+    400024: MonitorMain
+    400026: MonitorSide1
+    400028: MonitorSide2
     2300000: BezierCircle
     2300002: bow
     2300004: frame
@@ -37,6 +45,10 @@ ModelImporter:
     2300014: NurbsPath_001
     2300016: windowFrame
     2300018: frameShape
+    2300020: Monitor
+    2300022: MonitorMain
+    2300024: MonitorSide1
+    2300026: MonitorSide2
     3300000: BezierCircle
     3300002: bow
     3300004: frame
@@ -47,6 +59,10 @@ ModelImporter:
     3300014: NurbsPath_001
     3300016: windowFrame
     3300018: frameShape
+    3300020: Monitor
+    3300022: MonitorMain
+    3300024: MonitorSide1
+    3300026: MonitorSide2
     4300000: BezierCircle
     4300002: NurbsPath
     4300004: window
@@ -57,6 +73,10 @@ ModelImporter:
     4300014: NurbsPath_001
     4300016: windowFrame
     4300018: frameShape
+    4300020: Monitor
+    4300022: MonitorMain
+    4300024: MonitorSide1
+    4300026: MonitorSide2
     7400000: Default Take
     9500000: //RootNode
   materials:
@@ -83,7 +103,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 3.6
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1
