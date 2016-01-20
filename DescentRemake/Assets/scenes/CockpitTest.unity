@@ -218,11 +218,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 2033518, guid: c009b067841b3bd4e9fb3f05851374e9, type: 2}
       propertyPath: m_CullingMask.m_Bits
-      value: 257
+      value: 256
       objectReference: {fileID: 0}
     - target: {fileID: 2372244, guid: c009b067841b3bd4e9fb3f05851374e9, type: 2}
       propertyPath: m_CastShadows
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 190836, guid: c009b067841b3bd4e9fb3f05851374e9, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c009b067841b3bd4e9fb3f05851374e9, type: 2}
