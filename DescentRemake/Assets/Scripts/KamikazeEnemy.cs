@@ -29,9 +29,4 @@ public class KamikazeEnemy : MonoBehaviour {
     {
 
     }
-
-    void OnCollisionEnter(Collision other)
-    {
-        Debug.Log("Enemy hit the wall");
-    }
 }
