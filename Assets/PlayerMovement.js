@@ -5,7 +5,9 @@ var initialRot : Quaternion;
  
 var forwardSpeed = 1;
 var turnSpeed = 80;
-
+var rotateSpeed = 80;
+var maxSpeed = 5;
+var maxSpeedThrust = 10;
  	
 function Start () {    
     initialRot = transform.rotation;
@@ -24,21 +26,20 @@ function Update() {
     }
  
 if (Input.GetKey (KeyCode.W)) {
-	//transform.position += transform.forward * forwardSpeed * Time.deltaTime;
-	 GetComponent.<Rigidbody>().AddRelativeForce (Vector3.forward * 5);
-	
+		if(GetComponent.<Rigidbody>().velocity.magnitude > maxSpeed)
+         {
+                GetComponent.<Rigidbody>().velocity = GetComponent.<Rigidbody>().velocity.normalized * maxSpeed;
+         }
+	 GetComponent.<Rigidbody>().AddRelativeForce (Vector3.forward * 2);
 }
  
 if (Input.GetKey (KeyCode.S)) {
-	//transform.position -= transform.forward * riseSpeed * Time.deltaTime;
-	GetComponent.<Rigidbody>().AddRelativeForce (Vector3.back * 5);
-	
+	GetComponent.<Rigidbody>().AddRelativeForce (Vector3.back * 2);
 }
 
 if (Input.GetKey (KeyCode.A)) {
 	transform.Rotate(Vector3.down, turnSpeed * Time.deltaTime);
 } 
-
 
 if (Input.GetKey (KeyCode.D)) {
 	transform.Rotate(Vector3.up, turnSpeed * Time.deltaTime);
@@ -51,7 +52,30 @@ if (Input.GetKey (KeyCode.Q)) {
 if (Input.GetKey (KeyCode.E)) {
 	GetComponent.<Rigidbody>().AddRelativeForce (Vector3.right * 3);
 }
-   }
+
+if (Input.GetKey (KeyCode.Z)) {
+	transform.Rotate(0, 0, turnSpeed*Time.deltaTime, Space.Self);
+}
+
+if (Input.GetKey (KeyCode.C)) {
+	transform.Rotate(0, 0, -turnSpeed*Time.deltaTime, Space.Self);
+}
+
+if (Input.GetKey (KeyCode.Space)) {
+	GetComponent.<Rigidbody>().velocity = GetComponent.<Rigidbody>().velocity * 0.98;
+
+	GetComponent.<Rigidbody>().angularVelocity = Vector3.zero * 0.95;
+}
+
+if (Input.GetKey (KeyCode.X)) {
+	if(GetComponent.<Rigidbody>().velocity.magnitude > maxSpeed)
+         {
+                GetComponent.<Rigidbody>().velocity = GetComponent.<Rigidbody>().velocity.normalized * maxSpeedThrust;
+         }
+	GetComponent.<Rigidbody>().velocity = GetComponent.<Rigidbody>().velocity * 1.05;
+
+}
+}
    
    
    
