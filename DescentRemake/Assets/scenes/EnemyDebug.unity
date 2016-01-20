@@ -160,7 +160,7 @@ Transform:
   m_LocalScale: {x: 1, y: 4.2221794, z: 5.558463}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
 --- !u!65 &376917119
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -395,7 +395,7 @@ Transform:
   m_LocalScale: {x: 5.749561, y: 3.8911026, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
 --- !u!65 &599533210
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -423,8 +423,8 @@ GameObject:
   - 114: {fileID: 715186011}
   - 114: {fileID: 715186013}
   m_Layer: 0
-  m_Name: Cube
-  m_TagString: Untagged
+  m_Name: Kamikaze
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -436,11 +436,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 715186005}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.88, y: -1.47, z: -2.14}
+  m_LocalPosition: {x: -0.45353413, y: 0.9132283, z: 8.63342}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1068813735}
-  m_RootOrder: 0
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
 --- !u!23 &715186007
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -512,6 +512,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   maxCastDistance: 10
+  tags:
+  - Player
+  - Wall
 --- !u!114 &715186013
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -525,34 +528,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 5
   movementSpeed: 5
---- !u!1 &1068813734
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1068813735}
-  m_Layer: 0
-  m_Name: Kamikaze
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1068813735
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1068813734}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.333534, y: 2.3832283, z: 10.77342}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 715186006}
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
 --- !u!1 &1175424843
 GameObject:
   m_ObjectHideFlags: 0
@@ -562,10 +537,10 @@ GameObject:
   m_Component:
   - 4: {fileID: 1175424848}
   - 33: {fileID: 1175424847}
-  - 65: {fileID: 1175424846}
   - 23: {fileID: 1175424845}
   - 143: {fileID: 1175424844}
   - 114: {fileID: 1175424849}
+  - 65: {fileID: 1175424846}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player

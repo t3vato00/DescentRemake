@@ -18,4 +18,11 @@ public class PlayerMovement : MonoBehaviour {
 
         controller.Move(moveDirection * Time.deltaTime);
 	}
+
+    void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (hit.gameObject.tag.Equals("Enemy")) {
+            //Set the explosion routine
+        }
+    }
 }

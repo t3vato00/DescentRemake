@@ -5,7 +5,7 @@ public class KamikazeEnemy : MonoBehaviour {
 
     public float rotationSpeed;
     public float movementSpeed;
-    
+
 
     void Start()
     {
@@ -13,7 +13,6 @@ public class KamikazeEnemy : MonoBehaviour {
 
     void FixedUpdate()
     {
-        Debug.Log(EnemyController.raycastDistance);
         if (EnemyController.raycastHitThePlayer)
             MoveEnemy();
     }
@@ -24,5 +23,15 @@ public class KamikazeEnemy : MonoBehaviour {
         Vector3 moveDirection = player.position - transform.position;
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(player.position - transform.position), rotationSpeed * Time.fixedDeltaTime);
         transform.position += transform.forward * movementSpeed * Time.fixedDeltaTime;
+    }
+
+    void MoveEnemy(Vector3 direction)
+    {
+
+    }
+
+    void OnCollisionEnter(Collision other)
+    {
+        Debug.Log("Enemy hit the wall");
     }
 }
