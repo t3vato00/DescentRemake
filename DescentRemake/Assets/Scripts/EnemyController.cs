@@ -27,12 +27,12 @@ public class EnemyController : MonoBehaviour {
                         //Use this to check for enemys line of sight
                         if (hit.transform.tag.Equals("Player"))
                         {
+                            Debug.Log("found player");
                             raycastHitThePlayer = true;
                             raycastDistance = hit.distance;
                         }
                         else
                         {
-                            raycastHitThePlayer = false;
                         }
                     }
                 }
