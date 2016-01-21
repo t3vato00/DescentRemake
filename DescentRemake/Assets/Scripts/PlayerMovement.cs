@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour {
 
     public int forwardSpeed = 1;
     public int turnSpeed = 80;
+    public static Vector3 velocity;
 
 
     void Start() {
@@ -16,7 +17,7 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     void Update() {
-
+        velocity = GetComponent<Rigidbody>().velocity;
         //Debug.Log(Input.GetAxis("Mouse X") * -5);
         if (Input.GetAxis("Mouse X") != 0) {
             transform.Rotate(0, 0, Input.GetAxis("Mouse X") * -5, Space.Self);

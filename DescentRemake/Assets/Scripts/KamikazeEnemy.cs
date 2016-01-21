@@ -24,9 +24,5 @@ public class KamikazeEnemy : MonoBehaviour {
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(player.position - transform.position), rotationSpeed * Time.fixedDeltaTime);
         transform.position += transform.forward * movementSpeed * Time.fixedDeltaTime;
     }
-
-    void MoveEnemy(Vector3 direction)
-    {
-
-    }
+    
 }
