@@ -20,6 +20,12 @@ ModelImporter:
     100024: MonitorMain
     100026: MonitorSide1
     100028: MonitorSide2
+    100030: MonitorR1
+    100032: MonitorR2
+    100034: MonitorL1
+    100036: MonitorL2
+    100038: Sphere
+    100040: Cube
     400000: BezierCircle
     400002: bow
     400004: //RootNode
@@ -35,6 +41,12 @@ ModelImporter:
     400024: MonitorMain
     400026: MonitorSide1
     400028: MonitorSide2
+    400030: MonitorR1
+    400032: MonitorR2
+    400034: MonitorL1
+    400036: MonitorL2
+    400038: Sphere
+    400040: Cube
     2300000: BezierCircle
     2300002: bow
     2300004: frame
@@ -49,6 +61,12 @@ ModelImporter:
     2300022: MonitorMain
     2300024: MonitorSide1
     2300026: MonitorSide2
+    2300028: MonitorR1
+    2300030: MonitorR2
+    2300032: MonitorL1
+    2300034: MonitorL2
+    2300036: Sphere
+    2300038: Cube
     3300000: BezierCircle
     3300002: bow
     3300004: frame
@@ -63,6 +81,12 @@ ModelImporter:
     3300022: MonitorMain
     3300024: MonitorSide1
     3300026: MonitorSide2
+    3300028: MonitorR1
+    3300030: MonitorR2
+    3300032: MonitorL1
+    3300034: MonitorL2
+    3300036: Sphere
+    3300038: Cube
     4300000: BezierCircle
     4300002: NurbsPath
     4300004: window
@@ -77,6 +101,12 @@ ModelImporter:
     4300022: MonitorMain
     4300024: MonitorSide1
     4300026: MonitorSide2
+    4300028: MonitorR2
+    4300030: MonitorR1
+    4300032: MonitorL2
+    4300034: MonitorL1
+    4300036: Sphere
+    4300038: Cube
     7400000: Default Take
     9500000: //RootNode
   materials:
@@ -103,7 +133,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 3.6
+    globalScale: 1
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1
