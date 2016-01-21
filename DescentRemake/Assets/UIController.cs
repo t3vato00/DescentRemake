@@ -5,29 +5,38 @@ using System.Collections;
 public class UIController : MonoBehaviour {
 
 	public Transform monitorMain; //MonitorMain is a gameobject within the cockpit-model
+
 	TextMesh shieldText;
 	TextMesh hullText;
+
+	TextMesh missileCountText;
 
 	GameObject shieldBar;
 	GameObject hullBar;
 
 	public int debugSetShields = 100;
 	public int debugSetHull = 100;
+	public int debugSetMissiles = 5;
 
-	enum Meters { SHIELD, HEALTH};
+	enum MissileTypes { CONCUSSION, HOMING, SPLIT };
+
+	enum Meters { SHIELD, HEALTH };
 
 	void Awake() {
-		Transform HUDtexts1 = monitorMain.transform.Find("HUDtexts1");
+		Transform UIMain = monitorMain.transform.Find("UIMain");
 
-		shieldText = HUDtexts1.Find("ShieldText").GetComponent<TextMesh>();
-		hullText = HUDtexts1.Find("HullText").GetComponent<TextMesh>();
+		shieldText = UIMain.Find("ShieldText").GetComponent<TextMesh>();
+		hullText = UIMain.Find("HullText").GetComponent<TextMesh>();
 
-		shieldBar = monitorMain.Find("ShieldBar").gameObject;
-		hullBar = monitorMain.Find("HullBar").gameObject;
+		shieldBar = UIMain.Find("ShieldBar").gameObject;
+		hullBar = UIMain.Find("HullBar").gameObject;
+
+		Transform UIR1 = monitorMain.transform.Find("MonitorR1").transform.Find("UIR1");
+		missileCountText = UIR1.transform.Find("MissileCountText").GetComponent<TextMesh>();
 	}
 
 	// Use this for initialization
-	void Start () {
+	void Start() {
 		SetShields(100);
 		SetHull(100);
 	}
@@ -42,9 +51,9 @@ public class UIController : MonoBehaviour {
 		if (shieldText != null) {
 			shieldText.text = "SHIELD:" + percent + "%";
 		}
-		if (shieldBar!=null) {
+		if (shieldBar != null) {
 			float scale = percent / 100;
-			shieldBar.transform.localScale = new Vector3(1, scale,1);
+			shieldBar.transform.localScale = new Vector3(1, scale, 1);
 		}
 	}
 
@@ -64,10 +73,17 @@ public class UIController : MonoBehaviour {
 		}
 	}
 
+	public void SetMissileCount(int _count) {
+		if (missileCountText != null) {
+			missileCountText.text = "x"+_count;
+		}
+	}
+		
 
-	// Update is called once per frame
+		// Update is called once per frame
 	void Update () {
 		SetShields(debugSetShields);
 		SetHull(debugSetHull);
+		SetMissileCount(debugSetMissiles);
 	}
 }
