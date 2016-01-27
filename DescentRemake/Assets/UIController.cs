@@ -10,7 +10,7 @@ public class UIController : MonoBehaviour {
 	public TextMesh shieldText;
 	public TextMesh hullText;
 
-	public Sprite missileIcon;
+	public SpriteRenderer missileIcon;
 	public TextMesh missileCountText;
 
 	public GameObject shieldBar;
@@ -82,7 +82,7 @@ public class UIController : MonoBehaviour {
 	}
 
 	void Update () {
-		//These let you test whether the indicators work. Delete these later.
+		//These let you test within Unity editor whether the indicators work. Delete these later.
 		SetShields(debugSetShields);
 		SetHull(debugSetHull);
 		SetMissileCount(debugSetMissiles);

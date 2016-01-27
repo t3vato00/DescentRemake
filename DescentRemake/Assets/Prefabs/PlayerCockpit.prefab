@@ -181,7 +181,7 @@ GameObject:
   - 4: {fileID: 434234}
   - 212: {fileID: 21288508}
   m_Layer: 8
-  m_Name: MissilesIcon
+  m_Name: MissileIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -411,6 +411,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 499300}
   - 114: {fileID: 11498490}
+  - 136: {fileID: 13642706}
   m_Layer: 0
   m_Name: PlayerCockpit
   m_TagString: Untagged
@@ -528,7 +529,7 @@ Transform:
   - {fileID: 413110}
   - {fileID: 485222}
   m_Father: {fileID: 499300}
-  m_RootOrder: 1
+  m_RootOrder: 2
 --- !u!4 &408964
 Transform:
   m_ObjectHideFlags: 1
@@ -654,7 +655,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 499300}
-  m_RootOrder: 3
+  m_RootOrder: 0
 --- !u!4 &443608
 Transform:
   m_ObjectHideFlags: 1
@@ -674,11 +675,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 191640}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071067}
-  m_LocalPosition: {x: 0, y: -0.08, z: -0.935}
+  m_LocalPosition: {x: 0, y: -0.08, z: -0.814}
   m_LocalScale: {x: 0.66865206, y: 0.88147175, z: 0.66865134}
   m_Children: []
   m_Father: {fileID: 499300}
-  m_RootOrder: 2
+  m_RootOrder: 3
 --- !u!4 &452892
 Transform:
   m_ObjectHideFlags: 1
@@ -727,7 +728,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 175790}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: -0.00000016292068}
-  m_LocalPosition: {x: 0, y: 0, z: -0}
+  m_LocalPosition: {x: -5.61, y: 1.13, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 427460}
@@ -821,7 +822,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 499300}
-  m_RootOrder: 0
+  m_RootOrder: 1
 --- !u!4 &499300
 Transform:
   m_ObjectHideFlags: 1
@@ -829,13 +830,13 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 184404}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1.22, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 440698}
   - {fileID: 490720}
   - {fileID: 405548}
   - {fileID: 452162}
-  - {fileID: 440698}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!20 &2038970
@@ -855,7 +856,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.01
-  far clip plane: 2.9
+  far clip plane: 0.58
   field of view: 58
   orthographic: 0
   orthographic size: 5
@@ -888,7 +889,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.5
+  near clip plane: 0.2
   far clip plane: 300
   field of view: 71.5
   orthographic: 0
@@ -1448,7 +1449,7 @@ TextMesh:
   m_Anchor: 2
   m_Alignment: 0
   m_TabSize: 4
-  m_FontSize: 25
+  m_FontSize: 33
   m_FontStyle: 0
   m_RichText: 1
   m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
@@ -1503,11 +1504,11 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 53
+    m_FontSize: 67
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 4
-    m_MaxSize: 54
+    m_MaxSize: 70
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -1594,7 +1595,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shieldText: {fileID: 10258122}
   hullText: {fileID: 10247498}
-  missileIcon: {fileID: 0}
+  missileIcon: {fileID: 21288508}
   missileCountText: {fileID: 10232042}
   shieldBar: {fileID: 166200}
   hullBar: {fileID: 119032}
@@ -1610,6 +1611,19 @@ Behaviour:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 105420}
   m_Enabled: 1
+--- !u!136 &13642706
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 184404}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2.06
+  m_Direction: 2
+  m_Center: {x: 0, y: -0.11, z: -0.36}
 --- !u!212 &21214830
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -1850,7 +1864,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 135708}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0.025}
   m_LocalScale: {x: 0.001, y: 0.001, z: 0.001}
   m_Children: []
   m_Father: {fileID: 22462552}
