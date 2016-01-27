@@ -43,6 +43,7 @@ public class PlayerShoot : MonoBehaviour {
             {
                 weapons.InitiateStandardShoot(firerate, firemode);
                 nextbullet = Time.time + firerate;
+
             }
         }else if (Input.GetButtonUp("Fire1") && firemode == "auto")
         {

@@ -23,6 +23,7 @@ public class BulletMove : MonoBehaviour {
 
     void OnTriggerEnter(Collider col)
     {
+        if (col.gameObject.tag != "Bullet") {
         Vector3 explosionPos = this.transform.position;
         Collider[] colliders = Physics.OverlapSphere(explosionPos, radius);
         foreach (Collider hit in colliders)
@@ -33,5 +34,6 @@ public class BulletMove : MonoBehaviour {
                 rb.AddExplosionForce(power, explosionPos, radius, 3.0f, ForceMode.Force);
         }
         Destroy(this.gameObject);
+    }
     }
 }
