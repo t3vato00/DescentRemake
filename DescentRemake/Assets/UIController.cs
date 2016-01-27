@@ -4,49 +4,37 @@ using System.Collections;
 
 public class UIController : MonoBehaviour {
 
-	public Transform monitorMain; //MonitorMain is a gameobject within the cockpit-model
+	//Some UI texts are text meshes. They will later all be converted into Ui-texts
+	//Some icons are sprites. They will later be converted into UI-images.
 
-	TextMesh shieldText;
-	TextMesh hullText;
+	public TextMesh shieldText;
+	public TextMesh hullText;
 
-	TextMesh missileCountText;
+	public SpriteRenderer missileIcon;
+	public TextMesh missileCountText;
 
-	GameObject shieldBar;
-	GameObject hullBar;
+	public GameObject shieldBar;
+	public GameObject hullBar;
 
-	public int debugSetShields = 100;
+	public Image weaponIcon;
+	public Text weaponText;
+
+	//These are for debug purposes. These will let you test within the Unity editor whether the UI-indicators work. Delete these later.
+	public int debugSetShields = 100; 
 	public int debugSetHull = 100;
 	public int debugSetMissiles = 5;
 
-	enum MissileTypes { CONCUSSION, HOMING, SPLIT };
+	//These enumerators will probably find a use later
+	//enum MissileTypes { CONCUSSION, HOMING, SPLIT };
+	//enum Meters { SHIELD, HEALTH };
 
-	enum Meters { SHIELD, HEALTH };
-
-	void Awake() {
-		Transform UIMain = monitorMain.transform.Find("UIMain");
-
-		shieldText = UIMain.Find("ShieldText").GetComponent<TextMesh>();
-		hullText = UIMain.Find("HullText").GetComponent<TextMesh>();
-
-		shieldBar = UIMain.Find("ShieldBar").gameObject;
-		hullBar = UIMain.Find("HullBar").gameObject;
-
-		Transform UIR1 = monitorMain.transform.Find("MonitorR1").transform.Find("UIR1");
-		missileCountText = UIR1.transform.Find("MissileCountText").GetComponent<TextMesh>();
-	}
-
-	// Use this for initialization
 	void Start() {
 		SetShields(100);
 		SetHull(100);
 	}
 
 	public void SetShields(float _percentage) {
-
-		float percent = _percentage;
-		if (_percentage < 0) {
-			percent = 0;
-		}
+		float percent = nonNegativeFloat(_percentage);
 
 		if (shieldText != null) {
 			shieldText.text = "SHIELD:" + percent + "%";
@@ -58,11 +46,7 @@ public class UIController : MonoBehaviour {
 	}
 
 	public void SetHull(float _percentage) {
-
-		float percent = _percentage;
-		if (_percentage < 0) {
-			percent = 0;
-		}
+		float percent = nonNegativeFloat(_percentage);
 
 		if (hullText != null) {
 			hullText.text = "HULL:" + percent + "%";
@@ -74,16 +58,48 @@ public class UIController : MonoBehaviour {
 	}
 
 	public void SetMissileCount(int _count) {
+		int count = nonNegativeInt(_count);
+
 		if (missileCountText != null) {
-			missileCountText.text = "x"+_count;
+			missileCountText.text = "x"+ count;
 		}
 	}
 		
+	float nonNegativeFloat(float _floatNumber) {
+		float number = _floatNumber;
+		if (_floatNumber < 0) {
+			number = 0;
+		}
+		return number;
+	}
 
-		// Update is called once per frame
+	int nonNegativeInt(int _intNumber) {
+		int number = _intNumber;
+		if (_intNumber < 0) {
+			number = 0;
+		}
+		return number;
+	}
+
 	void Update () {
+		//These let you test within Unity editor whether the indicators work. Delete these later.
 		SetShields(debugSetShields);
 		SetHull(debugSetHull);
 		SetMissileCount(debugSetMissiles);
 	}
+
+	/*
+	void Awake() {
+		//Transform UIMain = monitorMain.transform.Find("UIMain");
+
+		shieldText = UIMain.Find("ShieldText").GetComponent<TextMesh>();
+		hullText = UIMain.Find("HullText").GetComponent<TextMesh>();
+
+		shieldBar = UIMain.Find("ShieldBar").gameObject;
+		hullBar = UIMain.Find("HullBar").gameObject;
+
+		//Transform UIR1 = monitorMain.transform.Find("MonitorR1").transform.Find("UIR1");
+		//missileCountText = UIR1.transform.Find("MissileCountText").GetComponent<TextMesh>();
+	}
+	*/
 }
