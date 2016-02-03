@@ -17,6 +17,7 @@ public class cutscene : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         invisibleWalls = GameObject.Find("Invisible_walls");
+        invisibleWalls.SetActive(false);
         routine = cutsceneCamera();
         skipText = GameObject.Find("SkipCutscene");
         player = GameObject.Find("Player");
@@ -40,6 +41,7 @@ public class cutscene : MonoBehaviour {
             camera2.enabled = false;
             cutsceneFinished = true;
             invisibleWalls.SetActive(true);
+            print(player.transform.position);
         }
     }
 
@@ -47,7 +49,6 @@ public class cutscene : MonoBehaviour {
     {
         //Cutscene - part 1
         player.GetComponent<UIController>().enabled = false;
-        invisibleWalls.SetActive(false);
         cockpitHUD.enabled = false;
         cockpit.enabled = false;
         camera1.enabled = true;
