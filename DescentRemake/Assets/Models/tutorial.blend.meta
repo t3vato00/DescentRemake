@@ -16,6 +16,7 @@ ModelImporter:
     100016: planet
     100018: tube
     100020: //RootNode
+    100022: tube_001
     400000: backrock
     400002: bigbunch
     400004: bigbunch_001
@@ -27,6 +28,7 @@ ModelImporter:
     400016: planet
     400018: tube
     400020: //RootNode
+    400022: tube_001
     2300000: backrock
     2300002: bigbunch
     2300004: bigbunch_001
@@ -37,6 +39,7 @@ ModelImporter:
     2300014: Plane_001
     2300016: planet
     2300018: tube
+    2300020: tube_001
     3300000: backrock
     3300002: bigbunch
     3300004: bigbunch_001
@@ -47,6 +50,7 @@ ModelImporter:
     3300014: Plane_001
     3300016: planet
     3300018: tube
+    3300020: tube_001
     4300000: bigbunch_001
     4300002: backrock
     4300004: tube
@@ -57,6 +61,7 @@ ModelImporter:
     4300014: planet
     4300016: lavafieldedgerock
     4300018: bigbunch
+    4300020: tube_001
     7400000: Default Take
     9500000: //RootNode
   materials:
