@@ -17,12 +17,17 @@ public class TurretEnemy : MonoBehaviour {
     private FiringWeapons weapons;
     private HealthShield healthShield;
 
+    private Transform turretPipe;
+    private Transform turretWeapons;
+
 
 	// Use this for initialization
 	void Start () {
         players = GameObject.FindGameObjectsWithTag("Player");
         weapons = GetComponent<FiringWeapons>();
         healthShield = GetComponent<HealthShield>();
+        turretPipe = GameObject.Find("Varsi").transform;
+        turretWeapons = GameObject.Find("Tykkirunko").transform;
 	}
 	
 	// Update is called once per frame
@@ -55,10 +60,12 @@ public class TurretEnemy : MonoBehaviour {
             float futurePosY = travelTimeY * nearestVelocity.y;
             float futurePosZ = travelTimeZ * nearestVelocity.z;
             Vector3 nearestPosition = nearestPlayer.transform.position;
-            Vector3 newPosition = new Vector3(nearestPosition.x + futurePosX, nearestPosition.y + futurePosY, nearestPosition.z + futurePosZ);
+            Vector3 futurePosition = new Vector3(nearestPosition.x + futurePosX, nearestPosition.y + futurePosY, nearestPosition.z + futurePosZ);
 
             //Quaternion lookRotation = Quaternion.LookRotation(nearestPlayer.transform.position - this.transform.position, Vector3.up);
-            Quaternion lookRotation = Quaternion.LookRotation(newPosition - this.transform.position, Vector3.up);
+            Quaternion lookRotation = Quaternion.LookRotation(futurePosition - this.transform.position, Vector3.up);
+            Vector3 eulerRotation = lookRotation.eulerAngles;
+            Debug.Log(eulerRotation);
             Quaternion relativeLookRotation = lookRotation * Quaternion.Inverse(transform.rotation);
             Vector3 relativeTargetRotationAxis; float relativeTargetRotationAngle;
             relativeLookRotation.ToAngleAxis(out relativeTargetRotationAngle, out relativeTargetRotationAxis);
@@ -68,9 +75,10 @@ public class TurretEnemy : MonoBehaviour {
                 relativeTargetRotationAxis = -relativeTargetRotationAxis;
             }
             relativeTargetRotationAxis.Normalize();
-
+            
             relativeTargetRotationAngle = Mathf.Min(relativeTargetRotationAngle, trackingVelocity * Time.deltaTime);
-            transform.rotation = Quaternion.AngleAxis(relativeTargetRotationAngle, relativeTargetRotationAxis) * transform.rotation;
+            transform.rotation = Quaternion.AngleAxis(-relativeTargetRotationAngle, relativeTargetRotationAxis) * transform.rotation;
+            
 
             if (!useTripleShot)
                 weapons.InitiateStandardShoot(fireRates[0], "standard");
@@ -79,7 +87,5 @@ public class TurretEnemy : MonoBehaviour {
             if (useMissiles)
                 weapons.InitiateAlternativeShoot(fireRates[1]);
         }
-        
-
 	}
 }
