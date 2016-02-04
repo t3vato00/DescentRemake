@@ -7,6 +7,7 @@ public class cutscene : MonoBehaviour {
     GameObject spotlight;
     GameObject skipText;
     GameObject invisibleWalls;
+    GameObject tutorial;
     public Camera cockpit;
     public Camera cockpitHUD;
     public Camera camera1;
@@ -16,6 +17,8 @@ public class cutscene : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        tutorial = GameObject.Find("Tutorial");
+        tutorial.SetActive(false);
         invisibleWalls = GameObject.Find("Invisible_walls");
         invisibleWalls.SetActive(false);
         routine = cutsceneCamera();
@@ -42,6 +45,7 @@ public class cutscene : MonoBehaviour {
             cutsceneFinished = true;
             invisibleWalls.SetActive(true);
             print(player.transform.position);
+            tutorial.SetActive(true);
         }
     }
 
@@ -72,6 +76,8 @@ public class cutscene : MonoBehaviour {
         player.GetComponent<Animator>().enabled = false;
         invisibleWalls.SetActive(true);
         cutsceneFinished = true;
+        skipText.SetActive(false);
+        tutorial.SetActive(true);
     }
 
 
