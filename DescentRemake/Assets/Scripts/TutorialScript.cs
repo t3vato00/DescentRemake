@@ -22,18 +22,22 @@ public class TutorialScript : MonoBehaviour {
         text4 = "<color=red>S - Backwards</color>\n";
         text5 = "<color=red>A - Left</color>\n";
         text6 = "<color=red>D - Right</color>\n";
-        tutorialText.text = "PERKELEPERKELEPERKELEPERKELEPERKELEPERKELEPERKELEPERKELE";
+        tutorialText.text = text1 + text2 + text3 + text4 + text5 + text6;
+    }
+
+    void OnEnable()
+    {
         StartCoroutine(tutorialCompletion());
     }
 
     void Update() {
-        if (Input.GetKeyDown(KeyCode.Mouse1) && !pressedPrimaryFire)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && !pressedPrimaryFire)
         {
             pressedPrimaryFire = true;
             text1 = "<color=green>Mouse 1 - Primary Fire</color>\n";
             tutorialText.text = text1 + text2 + text3 + text4 + text5 + text6;
         }
-        else if (Input.GetKeyDown(KeyCode.Mouse2) && !pressedSecondaryFire)
+        else if (Input.GetKeyDown(KeyCode.Mouse1) && !pressedSecondaryFire)
         {
             pressedSecondaryFire = true;
             text2 = "<color=green>Mouse 2 - Secondary Fire</color>\n";
@@ -68,10 +72,11 @@ public class TutorialScript : MonoBehaviour {
         while (true)
         {
             yield return new WaitForSeconds(1f);
-            if (pressedPrimaryFire && pressedSecondaryFire && pressedForwards && pressedBackwards && pressedLeft && pressedRight == true)
+            if (pressedPrimaryFire == true && pressedSecondaryFire == true && pressedForwards == true && pressedBackwards == true && pressedLeft == true && pressedRight == true)
             {
                 yield return new WaitForSeconds(2f);
                 tutorial.SetActive(false);
+                break;
             }
         }
     }
