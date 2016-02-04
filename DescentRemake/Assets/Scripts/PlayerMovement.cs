@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour {
 	public int rotateSpeed = 80;
 	public int maxSpeed = 6;
 	public int maxSpeedThrust = 10;
+	Vector3 oldRotation;
 
 	
 	void Start() {
@@ -85,14 +86,39 @@ public class PlayerMovement : MonoBehaviour {
 		}
 		
 		if (Input.GetKey (KeyCode.Z)) {
-			transform.Rotate(0, 0, turnSpeed * Time.deltaTime, Space.Self);
-		}
-		
-		if (Input.GetKey (KeyCode.C)) {		
-			transform.Rotate(0, 0, -turnSpeed * Time.deltaTime, Space.Self);
+			transform.Rotate(Vector3.right, turnSpeed * Time.deltaTime);
+			//transform.Rotate(0, 0, turnSpeed * Time.deltaTime, Space.Self);
 		}
 
 		if (Input.GetKey (KeyCode.X)) {
+			transform.Rotate(0, 0, turnSpeed * Time.deltaTime, Space.Self);
+		}
+
+		if (Input.GetKey (KeyCode.C)) {
+			transform.Rotate(0, 0, -turnSpeed * Time.deltaTime, Space.Self);
+		}
+
+		if (Input.GetKey (KeyCode.V)) {		
+			transform.Rotate(Vector3.left, turnSpeed * Time.deltaTime);
+			//transform.Rotate(0, 0, -turnSpeed * Time.deltaTime, Space.Self);
+		}
+
+		if (Input.GetKey(KeyCode.R)) {
+			if(GetComponent<Rigidbody>().velocity.magnitude > maxSpeed)
+			{
+				GetComponent<Rigidbody>().velocity = GetComponent<Rigidbody>().velocity.normalized * maxSpeed;
+			}
+			GetComponent<Rigidbody> ().AddRelativeForce(Vector3.up * 3);
+		}
+
+		if (Input.GetKey(KeyCode.F)) {
+			if(GetComponent<Rigidbody>().velocity.magnitude > maxSpeed)
+			{
+				GetComponent<Rigidbody>().velocity = GetComponent<Rigidbody>().velocity.normalized * maxSpeed;
+			}
+			GetComponent<Rigidbody> ().AddRelativeForce(Vector3.down * 3);
+		}
+		if (Input.GetKey (KeyCode.Space)) {
 						
 			StartCoroutine(turboBoostTimer());
 	/*		if (GetComponent<Rigidbody> ().velocity.magnitude > maxSpeedThrust) {
@@ -107,6 +133,8 @@ public class PlayerMovement : MonoBehaviour {
 			GetComponent<Rigidbody>().velocity = GetComponent<Rigidbody>().velocity * 0.96f;
 			
 			GetComponent<Rigidbody>().angularVelocity = Vector3.zero * 0.95f;
+
+		//	GetComponent<Rigidbody>().transform.rotation = Vector3.RotateTowards(0, 0, 0);
 
 		}
 		
