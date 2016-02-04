@@ -4,27 +4,31 @@ using System.Collections;
 public class MissileMove : MonoBehaviour
 {
     private Vector3 direction;
+    [SerializeField]
+    private GameObject missilexplosion;
     private float speed;
     private float radius = 15.0f;
     private float power = 100.0f;
-    // Use this for initialization
 
     void Start()
     {
         direction = this.transform.forward;
-        speed = 30f;
+        speed = 1f;
         GameObject.Destroy(this.gameObject, 10f);
     }
 
-    // Update is called once per frame
     void Update()
     {
+        if (speed < 50)
+        {
+            speed+=2.5f;
+        }
         this.GetComponent<Rigidbody>().AddForce(direction * speed);
     }
 
     void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.tag != "Bullet")
+        if (col.gameObject.tag != "Bullet" && col.gameObject.tag != "Player")
         {
             Vector3 explosionPos = this.transform.position;
             Collider[] colliders = Physics.OverlapSphere(explosionPos, radius);
@@ -35,6 +39,7 @@ public class MissileMove : MonoBehaviour
                 if (rb != null)
                     rb.AddExplosionForce(power, explosionPos, radius, 3.0f, ForceMode.Force);
             }
+            Instantiate(missilexplosion, this.transform.position, this.transform.rotation);
             Destroy(this.gameObject);
         }
     }
