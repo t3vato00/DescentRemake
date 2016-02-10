@@ -159,7 +159,6 @@ public class NetworkManager : MonoBehaviour
         SpawnSpot mySpawnSpot = spawnSpots[Random.Range(0, spawnSpots.Length)];
         GameObject myPlayerGO = (GameObject)
         PhotonNetwork.Instantiate("Player", mySpawnSpot.transform.position, transform.rotation, 0);
-        myPlayerGO.GetComponent<NetworkCharacter>().enabled = true;
         myPlayerGO.GetComponent<NetworkCharacterMovement>().enabled = true;
         myPlayerGO.GetComponent<MouseMovement>().enabled = true;
         myPlayerGO.GetComponent<ChatManager>().enabled = true;
