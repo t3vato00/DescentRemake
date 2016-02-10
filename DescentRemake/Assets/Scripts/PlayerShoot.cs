@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEditor;
 using System.Collections;
 
 /*  Reads player's inputs and uses class "FiringWeapons" to initiate shooting and item usage.
@@ -10,48 +9,40 @@ using System.Collections;
 
 public class PlayerShoot : MonoBehaviour {
 
-    [SerializeField]
-    private float FireRateForPrimaryFire;
-    [SerializeField]
-    private float FireRateForAltFire;
-    [SerializeField]
-    private float FireRateForItems;
+    private float firerate;
+    private float missilerate;
+    private float itemrate;
     private float nextbullet;
     private float nextmissile;
     private float nextitem;
 
     //Firemode can be "standard" , "triple" & "auto"
-    [SerializeField]
-    private string firemode;
-    //Item name can be "flare" , "emp" & "decoy"
-    [SerializeField]
-    private string NameOfEquippedAltWeapon;
-    //Item name can be "flare" , "emp" & "decoy"
-    [SerializeField]
-    private string NameOfEquippedItem;
+    public string firemode;
 
     private FiringWeapons weapons;
-    //private UnityEngine.UI.Image bulletOvImage;
-    //private UnityEngine.UI.Image missileOvImage;
-    //private UnityEngine.UI.Image itemOvImage;
+    private UnityEngine.UI.Image bulletOvImage;
+    private UnityEngine.UI.Image missileOvImage;
+    private UnityEngine.UI.Image itemOvImage;
 
     // Use this for initialization
     void Start () {
+        firerate = 0.2f;
+        missilerate = 0.5f;
+        itemrate = 1.0f;
         weapons = this.GetComponent<FiringWeapons>();
-        //bulletOvImage = GameObject.Find("BulletOverlay").GetComponent<UnityEngine.UI.Image>();
-        //missileOvImage = GameObject.Find("MissileOverlay").GetComponent<UnityEngine.UI.Image>();
-        //itemOvImage = GameObject.Find("ItemOverlay").GetComponent<UnityEngine.UI.Image>();
+        bulletOvImage = GameObject.Find("BulletOverlay").GetComponent<UnityEngine.UI.Image>();
+        missileOvImage = GameObject.Find("MissileOverlay").GetComponent<UnityEngine.UI.Image>();
+        itemOvImage = GameObject.Find("ItemOverlay").GetComponent<UnityEngine.UI.Image>();
     }
-
-    // Update is called once per frame
-    void Update () {
+	
+	// Update is called once per frame
+	void Update () {
         if (Input.GetButtonDown("Fire1"))
         {
             if (Time.time > nextbullet)
             {
-                weapons.InitiateStandardShoot(FireRateForPrimaryFire, firemode);
-                nextbullet = Time.time + FireRateForPrimaryFire;
-
+                weapons.InitiateStandardShoot(firerate, firemode);
+                nextbullet = Time.time + firerate;
             }
         }else if (Input.GetButtonUp("Fire1") && firemode == "auto")
         {
@@ -61,15 +52,16 @@ public class PlayerShoot : MonoBehaviour {
         {
             if (Time.time > nextmissile)
             {
-                weapons.InitiateAlternativeShoot(FireRateForAltFire);
-                nextmissile = Time.time + FireRateForAltFire;
+                weapons.InitiateAlternativeShoot(missilerate);
+                nextmissile = Time.time + missilerate;
             }
         }
         else if (Input.GetButtonDown("Item"))
         {
-            if (Time.time > nextitem) {
-                weapons.InitiateItemActivation(NameOfEquippedItem, FireRateForItems);
-                nextitem = Time.time + FireRateForItems;
+            if (Time.time > nextitem)
+            {
+                weapons.InitiateItemActivation(itemrate);
+                nextitem = Time.time + itemrate;
             }
         }
         /*if(bulletOvImage.rectTransform.localScale.y > 0)
