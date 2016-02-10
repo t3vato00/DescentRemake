@@ -25,6 +25,11 @@ ModelImporter:
     100034: NurbsPath_002
     100036: Sphere
     100038: Torus_001
+    100040: flatfloor1
+    100042: flatfloor2
+    100044: hallway1
+    100046: room1
+    100048: tokamak
     400000: BezierCircle
     400002: bow
     400004: Cube
@@ -45,6 +50,11 @@ ModelImporter:
     400034: NurbsPath_002
     400036: Sphere
     400038: Torus_001
+    400040: flatfloor1
+    400042: flatfloor2
+    400044: hallway1
+    400046: room1
+    400048: tokamak
     2300000: BezierCircle
     2300002: bow
     2300004: Cube
@@ -64,6 +74,11 @@ ModelImporter:
     2300032: NurbsPath_002
     2300034: Sphere
     2300036: Torus_001
+    2300038: flatfloor1
+    2300040: flatfloor2
+    2300042: hallway1
+    2300044: room1
+    2300046: tokamak
     3300000: BezierCircle
     3300002: bow
     3300004: Cube
@@ -83,6 +98,11 @@ ModelImporter:
     3300032: NurbsPath_002
     3300034: Sphere
     3300036: Torus_001
+    3300038: flatfloor1
+    3300040: flatfloor2
+    3300042: hallway1
+    3300044: room1
+    3300046: tokamak
     4300000: Cylinder_002
     4300002: Sphere
     4300004: BezierCircle
@@ -102,6 +122,11 @@ ModelImporter:
     4300032: Cube_007
     4300034: Cube_001
     4300036: Cylinder_003
+    4300038: tokamak
+    4300040: hallway1
+    4300042: room1
+    4300044: flatfloor2
+    4300046: flatfloor1
     7400000: Default Take
     9500000: //RootNode
   materials:
