@@ -8,6 +8,7 @@ public class cutscene : MonoBehaviour {
     GameObject skipText;
     GameObject invisibleWalls;
     GameObject tutorial;
+    GameObject crosshair;
     public Camera cockpit;
     public Camera cockpitHUD;
     public Camera camera1;
@@ -25,6 +26,8 @@ public class cutscene : MonoBehaviour {
         skipText = GameObject.Find("SkipCutscene");
         player = GameObject.Find("Player");
         spotlight = GameObject.Find("Spotlight");
+        crosshair = GameObject.Find("Crosshair");
+        crosshair.SetActive(false);
         StartCoroutine(routine);
 	}
 
@@ -46,6 +49,7 @@ public class cutscene : MonoBehaviour {
             invisibleWalls.SetActive(true);
             print(player.transform.position);
             tutorial.SetActive(true);
+            crosshair.SetActive(true);
         }
     }
 
@@ -78,7 +82,6 @@ public class cutscene : MonoBehaviour {
         cutsceneFinished = true;
         skipText.SetActive(false);
         tutorial.SetActive(true);
+        crosshair.SetActive(true);
     }
-
-
 }
