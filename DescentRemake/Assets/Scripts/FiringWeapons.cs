@@ -6,10 +6,15 @@ public class FiringWeapons : MonoBehaviour {
     public GameObject bullet;
     public GameObject missile;
     public GameObject flare;
+    public GameObject emp;
+    public GameObject decoy;
     private Transform bulletpointleft;
     private Transform bulletpointright;
     private Transform bulletpointupper;
     private Transform missilepoint;
+    private Transform playerpoint;
+    private Quaternion decoyrotationaddition;
+    private Quaternion decoyrotation;
     private float nextfire;
     private float nextmissile;
     private float nextitem;
@@ -17,6 +22,7 @@ public class FiringWeapons : MonoBehaviour {
     private float missilerate;
     private float itemrate;
     private string firemode;
+    private string itemname;
     private bool autofire;
 
 	// Use this for initialization
@@ -25,6 +31,7 @@ public class FiringWeapons : MonoBehaviour {
         bulletpointleft = this.transform.Find("BulletPointLeft").transform;
         bulletpointright = this.transform.Find("BulletPointRight").transform;
         bulletpointupper = this.transform.Find("BulletPointUpper").transform;
+        playerpoint = this.transform;
         firemode = "standard";
         nextfire = 0f;
         nextmissile = 0f;
@@ -85,9 +92,10 @@ public class FiringWeapons : MonoBehaviour {
         AlternativeShoot();
     }
 
-    public void InitiateItemActivation(float rateForItem)
+    public void InitiateItemActivation(string nameForItem, float rateForItem)
     {
         itemrate = rateForItem;
+        itemname = nameForItem;
         ItemActivate();
     }
 
@@ -102,9 +110,20 @@ public class FiringWeapons : MonoBehaviour {
 
     private void ItemActivate()
     {
-        if (Time.time > nextitem)
+        if (Time.time > nextitem && itemname == "flare")
         {
             Instantiate(flare, missilepoint.position, missilepoint.rotation);
+            nextitem = Time.time + itemrate;
+        }else if (Time.time > nextitem && itemname == "emp")
+        {
+            Instantiate(emp, playerpoint.position, playerpoint.rotation);
+            nextitem = Time.time + itemrate;
+        }
+        else if (Time.time > nextitem && itemname == "decoy")
+        {
+            decoyrotation = missilepoint.rotation;
+            decoyrotation *= Quaternion.Euler(90, 0, 0);
+            Instantiate(decoy, missilepoint.position, decoyrotation);
             nextitem = Time.time + itemrate;
         }
     }
