@@ -9,12 +9,14 @@ ModelImporter:
     100002: //RootNode
     100004: Tykkirunko
     100006: Varsi
-    100008: Tykkirunko_001
+    100008: Empty
+    100010: Tykkirunko_001
     400000: Alataso
     400002: //RootNode
     400004: Tykkirunko
     400006: Varsi
-    400008: Tykkirunko_001
+    400008: Empty
+    400010: Tykkirunko_001
     2300000: Alataso
     2300002: Tykkirunko
     2300004: Varsi
