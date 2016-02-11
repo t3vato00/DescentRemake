@@ -15,7 +15,7 @@ public class ChatManager : MonoBehaviour, IChatClientListener
     private const string AppVersion = "1.0";
 
     private ChatClient _chat;
-    private string username = "";
+    public string username = "";
     private string _chatText = "";
     //private string _privateText = "";
     private string _input = "";
