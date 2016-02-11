@@ -112,10 +112,10 @@ public class ChatManager : MonoBehaviour, IChatClientListener
                 {
                     DisconnectButton.GetComponent<CanvasGroup>().alpha = 1;
                     DisconnectButton.enabled = true;
-                    /*if (Input.GetKeyDown(KeyCode.Return))
+                    if (Input.GetKeyDown(KeyCode.Return))
                     {
                         disconnectbutton();
-                    }*/
+                    }
                 }
                 else
                 DisconnectButton.GetComponent<CanvasGroup>().alpha = 0;
@@ -253,6 +253,10 @@ public class ChatManager : MonoBehaviour, IChatClientListener
 
     public void disconnectbutton()
     {
+
+        SendMessage("Disconnected.");
+        
+        _connected = false;
 
     }
 }
