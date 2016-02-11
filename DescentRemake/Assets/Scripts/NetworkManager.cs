@@ -161,7 +161,10 @@ public class NetworkManager : MonoBehaviour
             return;
         }
 
-        
+        /* LISÄYS */
+        GameObject lobbyCamera = GameObject.Find("LobbyCamera");
+        lobbyCamera.SetActive(false);
+
         SpawnSpot mySpawnSpot = spawnSpots[Random.Range(0, spawnSpots.Length)];
         GameObject myPlayerGO = (GameObject)
         PhotonNetwork.Instantiate("Player", mySpawnSpot.transform.position, transform.rotation, 0);
