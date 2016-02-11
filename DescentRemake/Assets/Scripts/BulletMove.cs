@@ -6,14 +6,18 @@ public class BulletMove : MonoBehaviour {
     private Vector3 direction;
     [SerializeField]
     private GameObject bullethiteffect;
-    private float speed;
+    private GameObject player;
+    //Projectile's speed
+    [SerializeField]
+    private float speed = 1000f;
     private float radius = 0.35f;
     private float power = 50.0f;
 
     // Use this for initialization
     void Start () {
         direction = this.transform.forward;
-        speed = 1000f;
+        player = GameObject.FindGameObjectWithTag("Player");
+        this.GetComponent<Rigidbody>().velocity = player.GetComponent<Rigidbody>().velocity;
         this.GetComponent<Rigidbody>().AddForce(direction * speed);
         GameObject.Destroy(this.gameObject, 5f);
     }
