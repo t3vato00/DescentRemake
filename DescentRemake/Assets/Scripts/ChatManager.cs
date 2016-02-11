@@ -21,9 +21,12 @@ public class ChatManager : MonoBehaviour, IChatClientListener
     private string _input = "";
 
     private bool _connected;
+    private bool _escpressed;
 
     private Text ChatText;
     private InputField ChatInput;
+    private Button DisconnectButton;
+  
 
     ExitGames.Client.Photon.Chat.AuthenticationValues authValues = new ExitGames.Client.Photon.Chat.AuthenticationValues();
 
@@ -45,6 +48,7 @@ public class ChatManager : MonoBehaviour, IChatClientListener
 
         ChatText = GameObject.Find("ChatText").GetComponent<Text>();
         ChatInput = GameObject.Find("ChatInput").GetComponent<InputField>();
+        DisconnectButton = GameObject.Find("DisconnectButton").GetComponent<Button>();
         DontDestroyOnLoad(gameObject);
         Application.runInBackground = true;
 
@@ -99,10 +103,29 @@ public class ChatManager : MonoBehaviour, IChatClientListener
                     ChatInput.enabled = true;
                 }
             }
-
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                _escpressed = !_escpressed;
+                Debug.Log("osuko");
+                
+                if (_escpressed == true)
+                {
+                    DisconnectButton.GetComponent<CanvasGroup>().alpha = 1;
+                    DisconnectButton.enabled = true;
+                    /*if (Input.GetKeyDown(KeyCode.Return))
+                    {
+                        disconnectbutton();
+                    }*/
+                }
+                else
+                DisconnectButton.GetComponent<CanvasGroup>().alpha = 0;
+                DisconnectButton.enabled = false;
+          
+            
+            }
+            
 
         }
-
         
     }
 
@@ -226,6 +249,11 @@ public class ChatManager : MonoBehaviour, IChatClientListener
     public void OnStatusUpdate(string user, int status, bool gotMessage, object message)
     {
         Debug.Log(string.Format("Friend {0} set status to {1}", user, status));
+    }
+
+    public void disconnectbutton()
+    {
+
     }
 }
 
