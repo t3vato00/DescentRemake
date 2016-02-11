@@ -42,9 +42,12 @@ public class HealthShield : MonoBehaviour
         {
             health = 0;
         }
-        
-        shieldText.text = "Shield: " + shield;
-        healthText.text = "Health: " + health;
+
+        if (transform.tag == "Player")
+        {
+            //shieldText.text = "Shield: " + shield;
+            //healthText.text = "Health: " + health;
+        }
     }
 
     // Heal function

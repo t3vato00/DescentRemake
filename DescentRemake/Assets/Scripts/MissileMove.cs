@@ -10,6 +10,7 @@ public class MissileMove : MonoBehaviour
     private float radius = 15.0f;
     private float power = 100.0f;
     private GameObject instantiatedObj;
+    public int missileDamage = 20;
 
     void Start()
     {
@@ -29,6 +30,12 @@ public class MissileMove : MonoBehaviour
 
     void OnTriggerEnter(Collider col)
     {
+        if (col.GetComponent<HealthShield>() != null)
+        {
+            HealthShield enemy = col.GetComponent<HealthShield>();
+            enemy.takeDmg(missileDamage);
+            Destroy(this.gameObject);
+        }
         if (col.gameObject.tag != "Bullet" && col.gameObject.tag != "Player")
         {
             Vector3 explosionPos = this.transform.position;
