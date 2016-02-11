@@ -7,14 +7,15 @@ public class BulletMove : MonoBehaviour {
     [SerializeField]
     private GameObject bullethiteffect;
     private GameObject player;
-    private float speed;
+    //Projectile's speed
+    [SerializeField]
+    private float speed = 1000f;
     private float radius = 0.35f;
     private float power = 50.0f;
 
     // Use this for initialization
     void Start () {
         direction = this.transform.forward;
-        speed = 1000f;
         player = GameObject.FindGameObjectWithTag("Player");
         this.GetComponent<Rigidbody>().velocity = player.GetComponent<Rigidbody>().velocity;
         this.GetComponent<Rigidbody>().AddForce(direction * speed);
