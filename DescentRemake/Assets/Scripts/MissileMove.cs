@@ -10,6 +10,7 @@ public class MissileMove : MonoBehaviour
     private float speed;
     private float radius = 15.0f;
     private float power = 100.0f;
+    private GameObject instantiatedObj;
 
     void Start()
     {
@@ -42,8 +43,10 @@ public class MissileMove : MonoBehaviour
                 if (rb != null)
                     rb.AddExplosionForce(power, explosionPos, radius, 3.0f, ForceMode.Force);
             }
-            Instantiate(missilexplosion, this.transform.position, this.transform.rotation);
+            instantiatedObj = (GameObject) Instantiate(missilexplosion, this.transform.position, this.transform.rotation);
             Destroy(this.gameObject);
+
+            Destroy(instantiatedObj, 1.8f);
         }
     }
 }
