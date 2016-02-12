@@ -9,9 +9,19 @@ using System.Collections;
 
 public class PlayerShoot : MonoBehaviour {
 
+<<<<<<< HEAD
     private float firerate;
     private float missilerate;
     private float itemrate;
+=======
+    public int bulletCounter = 0;
+    [SerializeField]
+    private float FireRateForPrimaryFire;
+    [SerializeField]
+    private float FireRateForAltFire;
+    [SerializeField]
+    private float FireRateForItems;
+>>>>>>> develop
     private float nextbullet;
     private float nextmissile;
     private float nextitem;
@@ -41,8 +51,14 @@ public class PlayerShoot : MonoBehaviour {
         {
             if (Time.time > nextbullet)
             {
+<<<<<<< HEAD
                 weapons.InitiateStandardShoot(firerate, firemode);
                 nextbullet = Time.time + firerate;
+=======
+                weapons.InitiateStandardShoot(FireRateForPrimaryFire, firemode);
+                nextbullet = Time.time + FireRateForPrimaryFire;
+                bulletCounter++;
+>>>>>>> develop
             }
         }else if (Input.GetButtonUp("Fire1") && firemode == "auto")
         {

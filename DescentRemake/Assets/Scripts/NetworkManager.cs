@@ -12,12 +12,40 @@ public class NetworkManager : MonoBehaviour {
     List<string> chatMessages;
     int maxChatMessages = 10;
 
+<<<<<<< HEAD
 	void Start () {
 		spawnSpots = GameObject.FindObjectsOfType<SpawnSpot> ();
         PhotonNetwork.player.name = PlayerPrefs.GetString("Username", "Awesome player");
         chatMessages = new List<string>();
 
 	}
+=======
+    private Text NameText;
+    private InputField NameInput;
+    private Button ConnectMP;
+
+
+
+    public void ConnectMPButton()
+    {
+        Connect();
+
+    }
+    void Start()
+    {
+        spawnSpots = GameObject.FindObjectsOfType<SpawnSpot>();
+        PhotonNetwork.player.name = PlayerPrefs.GetString("Username", "Awesome player");
+        chatMessages = new List<string>();
+
+        NameText = GameObject.Find("NameText").GetComponent<Text>();
+        NameInput = GameObject.Find("NameInput").GetComponent<InputField>();
+        ConnectMP = GameObject.Find("ConnectMP").GetComponent<Button>();
+ 
+
+
+
+    }
+>>>>>>> develop
 
     void OnDestroy()
     {
@@ -41,6 +69,7 @@ public class NetworkManager : MonoBehaviour {
 		PhotonNetwork.ConnectUsingSettings ("DescentRemake");
         
 
+<<<<<<< HEAD
 	}
 	void Update(){
 		if (respawnTimer > 0) {
@@ -56,6 +85,28 @@ public class NetworkManager : MonoBehaviour {
 		GUILayout.Label (PhotonNetwork.connectionStateDetailed.ToString ());
 
         if (PhotonNetwork.connected == false && connecting == false )
+=======
+    void Connect()
+    {
+        //PhotonNetwork.offlineMode = true;
+        PhotonNetwork.ConnectUsingSettings("DescentRemake");
+
+        NameInput.enabled = false;
+        NameInput.GetComponent<CanvasGroup>().alpha = 0;
+
+        NameText.enabled = false;
+        NameText.GetComponent<CanvasGroup>().alpha = 0;
+
+        ConnectMP.enabled = false;
+        ConnectMP.GetComponent<CanvasGroup>().alpha = 0;
+
+
+
+    }
+    void Update()
+    {
+        if (respawnTimer > 0)
+>>>>>>> develop
         {
             GUILayout.BeginArea(new Rect(0, 0, Screen.width, Screen.height));
             GUILayout.BeginHorizontal();
@@ -83,9 +134,31 @@ public class NetworkManager : MonoBehaviour {
             GUILayout.BeginVertical();
             GUILayout.FlexibleSpace();
 
+<<<<<<< HEAD
             foreach(string msg in chatMessages){
                 GUILayout.Label(msg);
             }
+=======
+            PhotonNetwork.player.name = NameInput.text;
+            if (NameInput.text.Length > 0)
+            {
+                ConnectMP.enabled = true;
+
+
+                if (Input.GetKeyDown(KeyCode.Return))
+                {
+                    ConnectMPButton();
+                }
+
+                 
+
+            }
+            else
+                ConnectMP.enabled = false;
+
+
+        }
+>>>>>>> develop
 
             GUILayout.EndVertical();
             GUILayout.EndArea();
@@ -110,6 +183,7 @@ public class NetworkManager : MonoBehaviour {
 	void SpawnMyPlayer(){
         AddChatMessage("Spawning player: " + PhotonNetwork.player.name);
         
+<<<<<<< HEAD
 		if (spawnSpots == null) {
 			Debug.LogError ("Broken");
 			return;
@@ -126,11 +200,41 @@ public class NetworkManager : MonoBehaviour {
         //myPlayerGO.GetComponent<PlayerControl> ().enabled = true;
         //myPlayerGO.GetComponentInChildren<PlayerShooting> ().enabled = true;
         //myPlayerGO.GetComponentInChildren<PlayerHealth> ().enabled = true;
+=======
+        SpawnSpot mySpawnSpot = spawnSpots[Random.Range(0, spawnSpots.Length)];
+        GameObject myPlayerGO = (GameObject)
+        PhotonNetwork.Instantiate("Player", mySpawnSpot.transform.position, transform.rotation, 0);
+        myPlayerGO.GetComponent<NetworkCharacterMovement>().enabled = true;
+        myPlayerGO.GetComponent<MouseMovement>().enabled = true;
+        myPlayerGO.GetComponent<ChatManager>().enabled = true;
 
-        //GameObject.GetComponent<CameraFollow> ().enabled = true;
-        //myPlayerGO.GetComponentInChildren<CameraFollow>().enabled = true;
+        myPlayerGO.GetComponent<PlayerMovement>().enabled = true;
+
+        cameras = myPlayerGO.GetComponentsInChildren<Camera>();
+        foreach (Camera child in cameras)
+        {
+            child.enabled = true;
+        }
+        myPlayerGO.GetComponent<PlayerShoot>().enabled = true;
+        myPlayerGO.GetComponent<FiringWeapons>().enabled = true;
+        //myPlayerGO.GetComponent<PlayerSpotlight>().enabled = true;
+       // myPlayerGO.GetComponent<UIController>().enabled = true;
+
+
+        //myPlayerGO.GetComponentInChildren<> ().enabled = true;
+>>>>>>> develop
+
 
 
     }
 
+<<<<<<< HEAD
 }
+=======
+
+
+
+
+
+}
+>>>>>>> develop

@@ -4,7 +4,16 @@ using System.Collections;
 public class MissileMove : MonoBehaviour
 {
     private Vector3 direction;
+<<<<<<< HEAD
     private float speed;
+=======
+    [SerializeField]
+    private GameObject missilexplosion;
+    private GameObject player;
+    //Projectile's speed
+    [SerializeField]
+    private float speed = 1f;
+>>>>>>> develop
     private float radius = 15.0f;
     private float power = 100.0f;
     // Use this for initialization
@@ -12,7 +21,12 @@ public class MissileMove : MonoBehaviour
     void Start()
     {
         direction = this.transform.forward;
+<<<<<<< HEAD
         speed = 30f;
+=======
+        player = GameObject.FindGameObjectWithTag("Player");
+        this.GetComponent<Rigidbody>().velocity = player.GetComponent<Rigidbody>().velocity;
+>>>>>>> develop
         GameObject.Destroy(this.gameObject, 10f);
     }
 

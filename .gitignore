@@ -19,3 +19,13 @@
 
 # Unity3D Generated File On Crash Reports
 sysinfo.txt
+<<<<<<< HEAD
+=======
+DescentRemake/ProjectSettings/
+DescentRemake/Assets/Metal textures pack/
+DescentRemake/Assets/Stone textures pack/
+
+DescentRemake/Assets/Stone textures pack.meta
+
+
+>>>>>>> develop
