@@ -34,7 +34,6 @@ public class MissileMove : MonoBehaviour
         {
             HealthShield enemy = col.GetComponent<HealthShield>();
             enemy.takeDmg(missileDamage);
-            Destroy(this.gameObject);
         }
         if (col.gameObject.tag != "Bullet" && col.gameObject.tag != "Player")
         {

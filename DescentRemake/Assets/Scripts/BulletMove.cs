@@ -29,7 +29,6 @@ public class BulletMove : MonoBehaviour {
         if (col.GetComponent<HealthShield>() != null) {
             HealthShield enemy = col.GetComponent<HealthShield>();
             enemy.takeDmg(bulletDamage);
-            Destroy(this.gameObject);
         }
         if (col.gameObject.tag != "Bullet" && col.gameObject.tag != "Player") {
         Vector3 explosionPos = this.transform.position;

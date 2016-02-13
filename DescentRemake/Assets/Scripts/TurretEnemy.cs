@@ -21,9 +21,6 @@ public class TurretEnemy : MonoBehaviour {
     public Transform turretWeapon;
 
     private GameObject instantiatedObj1;
-
-    private GameObject instantiatedObj2;
-    private GameObject instantiatedObj3;
     [SerializeField]
     private GameObject missilexplosion;
 
@@ -42,12 +39,8 @@ public class TurretEnemy : MonoBehaviour {
             Destroy(this.gameObject, 0.5f);
             missilexplosion.transform.localScale = new Vector3(3f, 3f, 3f);
             instantiatedObj1 = (GameObject)Instantiate(missilexplosion, this.transform.position, this.transform.rotation);
-            //instantiatedObj2 = (GameObject)Instantiate(missilexplosion, turretPipe.position, turretPipe.rotation);
-            //instantiatedObj3 = (GameObject)Instantiate(missilexplosion, turretWeapon.position, turretWeapon.rotation);
 
             Destroy(instantiatedObj1, 1.8f);
-            Destroy(instantiatedObj2, 1.8f);
-            Destroy(instantiatedObj3, 1.8f);
         }
     }
 	
