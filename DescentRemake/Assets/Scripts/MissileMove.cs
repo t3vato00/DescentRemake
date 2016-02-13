@@ -6,7 +6,10 @@ public class MissileMove : MonoBehaviour
     private Vector3 direction;
     [SerializeField]
     private GameObject missilexplosion;
-    private float speed;
+    private GameObject player;
+    //Projectile's speed
+    [SerializeField]
+    private float speed = 1f;
     private float radius = 15.0f;
     private float power = 100.0f;
     private GameObject instantiatedObj;
@@ -15,7 +18,8 @@ public class MissileMove : MonoBehaviour
     void Start()
     {
         direction = this.transform.forward;
-        speed = 1f;
+        player = GameObject.FindGameObjectWithTag("Player");
+        this.GetComponent<Rigidbody>().velocity = player.GetComponent<Rigidbody>().velocity;
         GameObject.Destroy(this.gameObject, 10f);
     }
 
