@@ -46,8 +46,11 @@ public class HealthShield : MonoBehaviour
             health = 0;
         }
 
-        //shieldText.text = "Shield: " + shield;
-        //healthText.text = "Health: " + health;
+        if (transform.tag == "Player")
+        {
+            shieldText.text = "Shield: " + shield;
+            healthText.text = "Health: " + health;
+        }
         htext.text = "HULL: " + health;
         stext.text = "SHIELD: " + shield;
     }
