@@ -43,6 +43,11 @@ ModelImporter:
     100070: room2frontwall
     100072: room2wall1
     100074: room2wall2
+    100076: semicircleRoom
+    100078: tubeToSphere
+    100080: semicircleRoom_001
+    100082: semicircleRoom_002
+    100084: semicircleRoom_003
     400000: BezierCircle
     400002: BezierCircle_001
     400004: Cube
@@ -81,6 +86,11 @@ ModelImporter:
     400070: room2frontwall
     400072: room2wall1
     400074: room2wall2
+    400076: semicircleRoom
+    400078: tubeToSphere
+    400080: semicircleRoom_001
+    400082: semicircleRoom_002
+    400084: semicircleRoom_003
     2300000: BezierCircle
     2300002: BezierCircle_001
     2300004: Cube
@@ -118,6 +128,11 @@ ModelImporter:
     2300068: room2frontwall
     2300070: room2wall1
     2300072: room2wall2
+    2300074: semicircleRoom
+    2300076: tubeToSphere
+    2300078: semicircleRoom_001
+    2300080: semicircleRoom_002
+    2300082: semicircleRoom_003
     3300000: BezierCircle
     3300002: BezierCircle_001
     3300004: Cube
@@ -155,6 +170,11 @@ ModelImporter:
     3300068: room2frontwall
     3300070: room2wall1
     3300072: room2wall2
+    3300074: semicircleRoom
+    3300076: tubeToSphere
+    3300078: semicircleRoom_001
+    3300080: semicircleRoom_002
+    3300082: semicircleRoom_003
     4300000: BezierCircle_001
     4300002: Cube
     4300004: Torus
@@ -192,6 +212,11 @@ ModelImporter:
     4300068: room2ceil
     4300070: room2wall1
     4300072: room2wall2
+    4300074: semicircleRoom
+    4300076: tubeToSphere
+    4300078: semicircleRoom_003
+    4300080: semicircleRoom_002
+    4300082: semicircleRoom_001
     7400000: Default Take
     9500000: //RootNode
   materials:
