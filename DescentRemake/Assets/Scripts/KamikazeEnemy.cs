@@ -22,6 +22,11 @@ public class KamikazeEnemy : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (this.GetComponent<HealthShield> ().health == 0) {
+			instantedObj = (GameObject)Instantiate (missileExplosion, this.transform.position, this.transform.rotation);
+			Destroy (instantedObj, 1.0f);
+			Destroy (this.gameObject);
+		}
 		foreach (GameObject player in players) {
 			if(Vector3.Distance(this.transform.position, player.transform.position) < nearestPlayerDistance) {
 				nearestPlayerDistance = Vector3.Distance (this.transform.position, player.transform.position);
