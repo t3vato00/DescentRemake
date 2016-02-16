@@ -25,6 +25,29 @@ ModelImporter:
     100034: Sphere
     100036: Torus
     100038: Torus_001
+    100040: room1
+    100042: room1floor
+    100044: room1back_001
+    100046: room1ceiling
+    100048: room1entranceCeil
+    100050: room1entranceFloor
+    100052: room1front
+    100054: room1pillar
+    100056: room1walls
+    100058: tube1
+    100060: room2
+    100062: room2backwall
+    100064: room2ceil
+    100066: room2extension
+    100068: room2floor
+    100070: room2frontwall
+    100072: room2wall1
+    100074: room2wall2
+    100076: semicircleRoom
+    100078: tubeToSphere
+    100080: semicircleRoom_001
+    100082: semicircleRoom_002
+    100084: semicircleRoom_003
     400000: BezierCircle
     400002: BezierCircle_001
     400004: Cube
@@ -45,6 +68,29 @@ ModelImporter:
     400034: Sphere
     400036: Torus
     400038: Torus_001
+    400040: room1
+    400042: room1floor
+    400044: room1back_001
+    400046: room1ceiling
+    400048: room1entranceCeil
+    400050: room1entranceFloor
+    400052: room1front
+    400054: room1pillar
+    400056: room1walls
+    400058: tube1
+    400060: room2
+    400062: room2backwall
+    400064: room2ceil
+    400066: room2extension
+    400068: room2floor
+    400070: room2frontwall
+    400072: room2wall1
+    400074: room2wall2
+    400076: semicircleRoom
+    400078: tubeToSphere
+    400080: semicircleRoom_001
+    400082: semicircleRoom_002
+    400084: semicircleRoom_003
     2300000: BezierCircle
     2300002: BezierCircle_001
     2300004: Cube
@@ -64,6 +110,29 @@ ModelImporter:
     2300032: Sphere
     2300034: Torus
     2300036: Torus_001
+    2300038: room1
+    2300040: room1floor
+    2300042: room1back_001
+    2300044: room1ceiling
+    2300046: room1entranceCeil
+    2300048: room1entranceFloor
+    2300050: room1front
+    2300052: room1pillar
+    2300054: room1walls
+    2300056: tube1
+    2300058: room2
+    2300060: room2backwall
+    2300062: room2ceil
+    2300064: room2extension
+    2300066: room2floor
+    2300068: room2frontwall
+    2300070: room2wall1
+    2300072: room2wall2
+    2300074: semicircleRoom
+    2300076: tubeToSphere
+    2300078: semicircleRoom_001
+    2300080: semicircleRoom_002
+    2300082: semicircleRoom_003
     3300000: BezierCircle
     3300002: BezierCircle_001
     3300004: Cube
@@ -83,6 +152,29 @@ ModelImporter:
     3300032: Sphere
     3300034: Torus
     3300036: Torus_001
+    3300038: room1
+    3300040: room1floor
+    3300042: room1back_001
+    3300044: room1ceiling
+    3300046: room1entranceCeil
+    3300048: room1entranceFloor
+    3300050: room1front
+    3300052: room1pillar
+    3300054: room1walls
+    3300056: tube1
+    3300058: room2
+    3300060: room2backwall
+    3300062: room2ceil
+    3300064: room2extension
+    3300066: room2floor
+    3300068: room2frontwall
+    3300070: room2wall1
+    3300072: room2wall2
+    3300074: semicircleRoom
+    3300076: tubeToSphere
+    3300078: semicircleRoom_001
+    3300080: semicircleRoom_002
+    3300082: semicircleRoom_003
     4300000: BezierCircle_001
     4300002: Cube
     4300004: Torus
@@ -102,10 +194,33 @@ ModelImporter:
     4300032: Cube_007
     4300034: Cube_001
     4300036: Cylinder_003
+    4300038: room1floor
+    4300040: room1
+    4300042: room1entranceCeil
+    4300044: room1entranceFloor
+    4300046: room1front
+    4300048: room1ceiling
+    4300050: room1back_001
+    4300052: room1walls
+    4300054: room1pillar
+    4300056: tube1
+    4300058: room2
+    4300060: room2backwall
+    4300062: room2frontwall
+    4300064: room2extension
+    4300066: room2floor
+    4300068: room2ceil
+    4300070: room2wall1
+    4300072: room2wall2
+    4300074: semicircleRoom
+    4300076: tubeToSphere
+    4300078: semicircleRoom_003
+    4300080: semicircleRoom_002
+    4300082: semicircleRoom_001
     7400000: Default Take
     9500000: //RootNode
   materials:
-    importMaterials: 1
+    importMaterials: 0
     materialName: 0
     materialSearch: 1
   animations:
