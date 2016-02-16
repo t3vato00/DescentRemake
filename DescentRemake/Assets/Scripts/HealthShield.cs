@@ -46,13 +46,15 @@ public class HealthShield : MonoBehaviour
             health = 0;
         }
 
-        if (transform.tag == "Player")
+		if (shieldText != null && healthText != null)
         {
             shieldText.text = "Shield: " + shield;
             healthText.text = "Health: " + health;
         }
-        htext.text = "HULL: " + health;
-        stext.text = "SHIELD: " + shield;
+		if (htext != null && stext != null) {
+			htext.text = "HULL: " + health;
+			stext.text = "SHIELD: " + shield;
+		}
     }
 
     // Heal function
