@@ -16,6 +16,10 @@ public class TurretEnemy : MonoBehaviour {
     private float nearestPlayerDistance = 1000;
     private FiringWeapons weapons;
 
+    private GameObject instantiatedObj1;
+    [SerializeField]
+    private GameObject missilexplosion;
+
 
 	// Use this for initialization
 	void Start () {
@@ -23,9 +27,28 @@ public class TurretEnemy : MonoBehaviour {
         weapons = GetComponent<FiringWeapons>();
 
 	}
+    bool notDestroying = false;
+    void LateUpdate() {
+        //Destroy turret when health is 0
+        if (healthShield.health == 0 && !notDestroying)
+        {
+            notDestroying = true;
+            Destroy(this.gameObject, 0.5f);
+            missilexplosion.transform.localScale = new Vector3(3f, 3f, 3f);
+            instantiatedObj1 = (GameObject)Instantiate(missilexplosion, this.transform.position, this.transform.rotation);
+
+            Destroy(instantiatedObj1, 1.8f);
+        }
+    }
 	
 	// Update is called once per frame
 	void Update () {
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> 523530014a93d5e0a0e7fa04604a9d7656103086
         foreach (GameObject player in players) {
             if (Vector3.Distance(this.transform.position, player.transform.position) < nearestPlayerDistance)
             {

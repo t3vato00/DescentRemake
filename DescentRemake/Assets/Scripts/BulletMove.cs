@@ -9,11 +9,17 @@ public class BulletMove : MonoBehaviour {
     private float speed;
     private float radius = 0.35f;
     private float power = 50.0f;
+    public int bulletDamage = 5;
 
     // Use this for initialization
     void Start () {
         direction = this.transform.forward;
+<<<<<<< HEAD
         speed = 1000f;
+=======
+        player = GameObject.FindGameObjectWithTag("Player");
+        //this.GetComponent<Rigidbody>().velocity = player.GetComponent<Rigidbody>().velocity;
+>>>>>>> 523530014a93d5e0a0e7fa04604a9d7656103086
         this.GetComponent<Rigidbody>().AddForce(direction * speed);
         GameObject.Destroy(this.gameObject, 5f);
     }
@@ -25,6 +31,26 @@ public class BulletMove : MonoBehaviour {
 
     void OnTriggerEnter(Collider col)
     {
+
+
+
+        HealthShield enemy = col.GetComponent<HealthShield>();
+
+        if (enemy != null) {
+
+
+            if (col.tag == "Player")
+            {
+                enemy.GetComponent<PhotonView>().RPC("takeDmg", PhotonTargets.AllBuffered, bulletDamage);
+            }
+            else
+            {
+                enemy.takeDmg(bulletDamage);
+            }
+            
+        }
+        else
+            Debug.Log("collisiontriggered");
         if (col.gameObject.tag != "Bullet" && col.gameObject.tag != "Player") {
         Vector3 explosionPos = this.transform.position;
         Collider[] colliders = Physics.OverlapSphere(explosionPos, radius);
@@ -34,9 +60,12 @@ public class BulletMove : MonoBehaviour {
 
             if (rb != null)
                 rb.AddExplosionForce(power, explosionPos, radius, 3.0f, ForceMode.Force);
+                
         }
-            Instantiate(bullethiteffect, this.transform.position, this.transform.rotation);
+            Object bulletHit = Instantiate(bullethiteffect, this.transform.position, this.transform.rotation);
             Destroy(this.gameObject);
+            Destroy(bulletHit, 1.0f);
     }
+        Destroy(this.gameObject);
     }
 }

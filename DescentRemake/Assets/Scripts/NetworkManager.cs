@@ -146,7 +146,7 @@ public class NetworkManager : MonoBehaviour
 
     void SpawnMyPlayer()
     {
-       // AddChatMessage("Spawning player: " + PhotonNetwork.player.name);
+
 
 
         if (spawnSpots == null)
@@ -171,6 +171,14 @@ public class NetworkManager : MonoBehaviour
         {
             child.enabled = true;
         }
+<<<<<<< HEAD
+=======
+        myPlayerGO.GetComponent<PlayerShoot>().enabled = true;
+        myPlayerGO.GetComponent<FiringWeapons>().enabled = true;
+        myPlayerGO.GetComponent<TrackFiringScript>().enabled = true;
+        myPlayerGO.GetComponentInChildren<AudioListener>().enabled = true;
+        myPlayerGO.GetComponent<HealthShield>().enabled = true;
+>>>>>>> 523530014a93d5e0a0e7fa04604a9d7656103086
        // myPlayerGO.GetComponent<UIController>().enabled = true;
 
 

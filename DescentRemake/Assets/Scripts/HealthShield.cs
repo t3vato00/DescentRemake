@@ -42,9 +42,22 @@ public class HealthShield : MonoBehaviour
         {
             health = 0;
         }
+<<<<<<< HEAD
         
         shieldText.text = "Shield: " + shield;
         healthText.text = "Health: " + health;
+=======
+
+		if (shieldText != null && healthText != null)
+        {
+            shieldText.text = "Shield: " + shield;
+            healthText.text = "Health: " + health;
+        }
+		if (htext != null && stext != null) {
+			htext.text = "HULL: " + health;
+			stext.text = "SHIELD: " + shield;
+		}
+>>>>>>> 523530014a93d5e0a0e7fa04604a9d7656103086
     }
 
     // Heal function
@@ -77,6 +90,7 @@ public class HealthShield : MonoBehaviour
     }
 
     // Call when taking damage
+    [PunRPC]
     public void takeDmg(int dmgTaken)
     {
         shieldRegenIsEnabled = true;
