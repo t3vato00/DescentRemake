@@ -37,7 +37,10 @@ public class BulletMove : MonoBehaviour {
             enemy.takeDmg(bulletDamage);
 			if(firedPlayer != null)
 				firedPlayer.GetComponent<FiringWeapons>().addHit ();
-
+			if(col.GetComponent<HealthShield>().health <= 0) {
+				firedPlayer.GetComponent <FiringWeapons> ().addKill ();
+				Destroy (col.gameObject);
+			}
         }
         if (col.gameObject.tag != "Bullet" && col.gameObject.tag != "Player") {
         Vector3 explosionPos = this.transform.position;

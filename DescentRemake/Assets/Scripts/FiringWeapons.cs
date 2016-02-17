@@ -26,6 +26,7 @@ public class FiringWeapons : MonoBehaviour {
     private bool autofire;
 
 	public int hitCount;
+	public int killCount;
 
 	// Use this for initialization
 	void Start () {
@@ -61,6 +62,11 @@ public class FiringWeapons : MonoBehaviour {
 
 	public void addHit() {
 		hitCount++;
+	}
+
+	public void addKill() {
+		killCount++;
+		Debug.Log ("Killed");
 	}
 
     public void InitiateStandardShoot(float rateForFire, string modeForFire)
