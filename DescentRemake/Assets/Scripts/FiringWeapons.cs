@@ -25,6 +25,8 @@ public class FiringWeapons : MonoBehaviour {
     private string itemname;
     private bool autofire;
 
+	public int hitCount;
+
 	// Use this for initialization
 	void Start () {
         missilepoint = this.transform.Find("MissilePoint").transform;
@@ -50,7 +52,16 @@ public class FiringWeapons : MonoBehaviour {
             Instantiate(bullet, bulletpointright.position, bulletpointright.rotation);
             nextfire = Time.time + firerate;
         }
+		if (bullet != null) {
+			bullet.GetComponent<BulletMove> ().firedPlayer = gameObject;
+			missile.GetComponent<MissileMove> ().firedPlayer = gameObject;
+		}
     }
+
+
+	public void addHit() {
+		hitCount++;
+	}
 
     public void InitiateStandardShoot(float rateForFire, string modeForFire)
     {
