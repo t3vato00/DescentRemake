@@ -20,6 +20,8 @@ public class NetworkManager : MonoBehaviour
     private InputField NameInput;
     private Button ConnectMP;
 
+
+
     public void ConnectMPButton()
     {
         Connect();
@@ -34,6 +36,7 @@ public class NetworkManager : MonoBehaviour
         NameText = GameObject.Find("NameText").GetComponent<Text>();
         NameInput = GameObject.Find("NameInput").GetComponent<InputField>();
         ConnectMP = GameObject.Find("ConnectMP").GetComponent<Button>();
+ 
 
 
 
@@ -76,6 +79,8 @@ public class NetworkManager : MonoBehaviour
         ConnectMP.enabled = false;
         ConnectMP.GetComponent<CanvasGroup>().alpha = 0;
 
+
+
     }
     void Update()
     {
@@ -108,10 +113,11 @@ public class NetworkManager : MonoBehaviour
                     ConnectMPButton();
                 }
 
+                 
+
             }
             else
                 ConnectMP.enabled = false;
-
 
 
         }
@@ -155,36 +161,38 @@ public class NetworkManager : MonoBehaviour
             return;
         }
 
-        
+        /* LISÄYS */
+        GameObject lobbyCamera = GameObject.Find("LobbyCamera");
+        lobbyCamera.SetActive(false);
+
         SpawnSpot mySpawnSpot = spawnSpots[Random.Range(0, spawnSpots.Length)];
         GameObject myPlayerGO = (GameObject)
         PhotonNetwork.Instantiate("Player", mySpawnSpot.transform.position, transform.rotation, 0);
         myPlayerGO.GetComponent<NetworkCharacterMovement>().enabled = true;
         myPlayerGO.GetComponent<MouseMovement>().enabled = true;
         myPlayerGO.GetComponent<ChatManager>().enabled = true;
-        //myPlayerGO.GetComponent<PlayerShoot>().enabled = true;
-        //myPlayerGO.GetComponent<FiringWeapons>().enabled = true;
+
         myPlayerGO.GetComponent<PlayerMovement>().enabled = true;
-        //myPlayerGO.GetComponent<PlayerSpotlight>().enabled = true;
+
         cameras = myPlayerGO.GetComponentsInChildren<Camera>();
         foreach (Camera child in cameras)
         {
             child.enabled = true;
         }
+        myPlayerGO.GetComponent<PlayerShoot>().enabled = true;
+        myPlayerGO.GetComponent<FiringWeapons>().enabled = true;
+        //myPlayerGO.GetComponent<PlayerSpotlight>().enabled = true;
        // myPlayerGO.GetComponent<UIController>().enabled = true;
 
 
-        
-        
-        /*GameObject secondCamera = (GameObject)
-        GameObject.Find("CockPitCamera").GetComponent<Camera>();*/
         //myPlayerGO.GetComponentInChildren<> ().enabled = true;
 
-        //GameObject.GetComponent<CameraFollow> ().enabled = true;
-        //myPlayerGO.GetComponentInChildren<CameraFollow>().enabled = true;
 
 
     }
+
+
+
 
 
 
