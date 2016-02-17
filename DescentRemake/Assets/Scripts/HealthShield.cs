@@ -87,6 +87,7 @@ public class HealthShield : MonoBehaviour
     }
 
     // Call when taking damage
+    [PunRPC]
     public void takeDmg(int dmgTaken)
     {
         shieldRegenIsEnabled = true;
