@@ -104,7 +104,7 @@ public class ChatManager : MonoBehaviour, IChatClientListener
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 _escpressed = !_escpressed;
-                Debug.Log("osuko");
+                
                 
                 if (_escpressed == true)
                 {
