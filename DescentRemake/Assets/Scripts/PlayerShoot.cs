@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEditor;
 using System.Collections;
 
 /*  Reads player's inputs and uses class "FiringWeapons" to initiate shooting and item usage.
@@ -9,7 +10,6 @@ using System.Collections;
 
 public class PlayerShoot : MonoBehaviour {
 
-    public int bulletCounter = 0;
     [SerializeField]
     private float FireRateForPrimaryFire;
     [SerializeField]
@@ -51,7 +51,7 @@ public class PlayerShoot : MonoBehaviour {
             {
                 weapons.InitiateStandardShoot(FireRateForPrimaryFire, firemode);
                 nextbullet = Time.time + FireRateForPrimaryFire;
-                bulletCounter++;
+
             }
         }else if (Input.GetButtonUp("Fire1") && firemode == "auto")
         {
