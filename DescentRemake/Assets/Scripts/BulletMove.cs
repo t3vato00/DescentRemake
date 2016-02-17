@@ -19,7 +19,7 @@ public class BulletMove : MonoBehaviour {
     void Start () {
         direction = this.transform.forward;
         player = GameObject.FindGameObjectWithTag("Player");
-        this.GetComponent<Rigidbody>().velocity = player.GetComponent<Rigidbody>().velocity;
+        //this.GetComponent<Rigidbody>().velocity = player.GetComponent<Rigidbody>().velocity;
         this.GetComponent<Rigidbody>().AddForce(direction * speed);
         GameObject.Destroy(this.gameObject, 5f);
     }
@@ -39,7 +39,7 @@ public class BulletMove : MonoBehaviour {
 				firedPlayer.GetComponent<FiringWeapons>().addHit ();
 			if(col.GetComponent<HealthShield>().health <= 0) {
 				firedPlayer.GetComponent <FiringWeapons> ().addKill ();
-				Destroy (col.gameObject);
+				Destroy (col.gameObject, 1.0f);
 			}
         }
         if (col.gameObject.tag != "Bullet" && col.gameObject.tag != "Player") {

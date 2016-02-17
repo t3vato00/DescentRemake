@@ -15,14 +15,7 @@ public class NetworkCharacterMovement : Photon.MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(Input.GetKeyDown(KeyCode.P)) {
-			Debug.Log ("Posting death");
-			StartCoroutine(PostDeath());
-		}
 		if (photonView.isMine) {
-			if (GetComponent<HealthShield> ().health <= 0) {
-				StartCoroutine (PostDeath ());
-			}
 		} 
 		else {
             transform.position = Vector3.Lerp(transform.position, realPosition, 5 * Time.deltaTime);
@@ -32,7 +25,9 @@ public class NetworkCharacterMovement : Photon.MonoBehaviour {
 
 	}
 
-
+	public void sendKill() {
+		StartCoroutine (PostKill ());
+	}
 
 	public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
         if(stream.isWriting){
@@ -52,12 +47,20 @@ public class NetworkCharacterMovement : Photon.MonoBehaviour {
 	}
 
 	IEnumerator PostDeath() {
-		string post_url = url + "?ID=" + WWW.EscapeURL (GetComponent<ChatManager> ().id.ToString()) + "&killed=" + "1";
-		Debug.Log (post_url);
-		Debug.Log (GetComponent<ChatManager> ().id.ToString ());
 		WWWForm wwwForm = new WWWForm ();
 		wwwForm.AddField ("ID", GetComponent<ChatManager> ().id.ToString ());
 		wwwForm.AddField ("killed", "1");
+		WWW hs_post = new WWW (url, wwwForm);
+		yield return hs_post;
+		if (hs_post.error != null) {
+			Debug.Log ("Error posting data to database: " + hs_post.error);
+		}
+	}
+
+	IEnumerator PostKill() {
+		WWWForm wwwForm = new WWWForm ();
+		wwwForm.AddField ("ID", GetComponent<ChatManager> ().id.ToString ());
+		wwwForm.AddField ("kills", "1");
 		WWW hs_post = new WWW (url, wwwForm);
 		yield return hs_post;
 		if (hs_post.error != null) {

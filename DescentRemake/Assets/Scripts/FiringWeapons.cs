@@ -66,7 +66,9 @@ public class FiringWeapons : MonoBehaviour {
 
 	public void addKill() {
 		killCount++;
-		Debug.Log ("Killed");
+		Debug.Log ("Adding kill");
+		GetComponent<ChatManager> ().killStreak (GetComponent<ChatManager> ().username, killCount);
+		GetComponent<NetworkCharacterMovement> ().sendKill ();
 	}
 
     public void InitiateStandardShoot(float rateForFire, string modeForFire)
