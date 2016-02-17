@@ -26,6 +26,8 @@ ModelImporter:
     100036: MonitorL2
     100038: Sphere
     100040: Cube
+    100042: windowFrameSides
+    100044: frameShapeSides
     400000: BezierCircle
     400002: bow
     400004: //RootNode
@@ -47,6 +49,8 @@ ModelImporter:
     400036: MonitorL2
     400038: Sphere
     400040: Cube
+    400042: windowFrameSides
+    400044: frameShapeSides
     2300000: BezierCircle
     2300002: bow
     2300004: frame
@@ -67,6 +71,8 @@ ModelImporter:
     2300034: MonitorL2
     2300036: Sphere
     2300038: Cube
+    2300040: windowFrameSides
+    2300042: frameShapeSides
     3300000: BezierCircle
     3300002: bow
     3300004: frame
@@ -87,6 +93,8 @@ ModelImporter:
     3300034: MonitorL2
     3300036: Sphere
     3300038: Cube
+    3300040: windowFrameSides
+    3300042: frameShapeSides
     4300000: BezierCircle
     4300002: NurbsPath
     4300004: window
@@ -107,6 +115,8 @@ ModelImporter:
     4300034: MonitorL1
     4300036: Sphere
     4300038: Cube
+    4300040: windowFrameSides
+    4300042: frameShapeSides
     7400000: Default Take
     9500000: //RootNode
   materials:
