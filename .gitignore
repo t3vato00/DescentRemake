@@ -20,6 +20,7 @@
 # Unity3D Generated File On Crash Reports
 sysinfo.txt
 <<<<<<< HEAD
+<<<<<<< HEAD
 DescentRemake/Assets/Metal textures pack/
 DescentRemake/Assets/Elementals/
 DescentRemake/Assets/Metal textures pack.meta
@@ -40,3 +41,10 @@ DescentRemake/Assets/Metal textures pack.meta
 >>>>>>> e3683f6d7411ebfed8cd9ed9ef75cd09d3d2a03f
 >>>>>>> bb2333f6f9795c1be749ff42cd24ba659ec8333b
 DescentRemake/Assets/Graphics/Models/Materials/Material_001.mat
+=======
+DescentRemake/ProjectSettings/
+DescentRemake/Assets/Metal textures pack/
+DescentRemake/Assets/Stone textures pack/
+DescentRemake/Assets/Metal textures pack.meta
+DescentRemake/Assets/Stone textures pack.meta
+>>>>>>> upstream/develop

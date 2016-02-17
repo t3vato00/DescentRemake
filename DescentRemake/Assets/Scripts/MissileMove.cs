@@ -19,7 +19,7 @@ public class MissileMove : MonoBehaviour
     {
         direction = this.transform.forward;
         player = GameObject.FindGameObjectWithTag("Player");
-        this.GetComponent<Rigidbody>().velocity = player.GetComponent<Rigidbody>().velocity;
+        //this.GetComponent<Rigidbody>().velocity = player.GetComponent<Rigidbody>().velocity;
         GameObject.Destroy(this.gameObject, 10f);
     }
 
@@ -34,11 +34,21 @@ public class MissileMove : MonoBehaviour
 
     void OnTriggerEnter(Collider col)
     {
-        if (col.GetComponent<HealthShield>() != null)
-        {
-            HealthShield enemy = col.GetComponent<HealthShield>();
-            enemy.takeDmg(missileDamage);
-        }
+
+        HealthShield enemy = col.GetComponent<HealthShield>();
+
+        if (enemy != null) {
+
+
+            if (col.tag == "Player")
+            {
+                enemy.GetComponent<PhotonView>().RPC("takeDmg", PhotonTargets.AllBuffered, missileDamage);
+            }
+            else
+            {
+                enemy.takeDmg(missileDamage);
+            }
+
         if (col.gameObject.tag != "Bullet" && col.gameObject.tag != "Player")
         {
             Vector3 explosionPos = this.transform.position;
