@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+<<<<<<< HEAD
+guid: 63c6168c87734e342b33b21389cadd9a
+timeCreated: 1453972366
+=======
+<<<<<<< HEAD
+guid: 23cdb3cd75f2f3749b662a36f47187f1
+timeCreated: 1454397630
+=======
+guid: 61b0f2747ab32c741ac08a36fa078415
+timeCreated: 1453969677
+>>>>>>> 603d889e352f15b13b069e9c8f80ecd2b4071c8a
+>>>>>>> develop
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
