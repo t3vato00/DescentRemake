@@ -19,56 +19,13 @@
 
 # Unity3D Generated File On Crash Reports
 sysinfo.txt
-DescentRemake/ProjectSettings/
+
+DescentRemake/Assets/Metal textures pack/
+DescentRemake/Assets/Elementals/
 DescentRemake/Assets/Metal textures pack/
 DescentRemake/Assets/Stone textures pack/
+DescentRemake/ProjectSettings/
 DescentRemake/Assets/Metal textures pack.meta
 DescentRemake/Assets/Stone textures pack.meta
-DescentRemake/Assets/Models/Materials/pattern 01/Metal pattern 01.mat.meta
-DescentRemake/Assets/Models/Materials/pattern 01/diffuse.tga.meta
-DescentRemake/Assets/Models/Materials/pattern 01/normal.tga.meta
-DescentRemake/Assets/Models/Materials/pattern 01/preview.jpg.meta
-DescentRemake/Assets/Models/Materials/pattern 02/Metal pattern 02.mat.meta
-DescentRemake/Assets/Models/Materials/pattern 02/diffuse.tga.meta
-DescentRemake/Assets/Models/Materials/pattern 02/glow.tga.meta
-DescentRemake/Assets/Models/Materials/pattern 02/normal.tga.meta
-DescentRemake/Assets/Models/Materials/pattern 02/preview.jpg.meta
-DescentRemake/Assets/Models/Materials/pattern 04/Metal pattern 04.mat.meta
-DescentRemake/Assets/Models/Materials/pattern 04/diffuse.tga.meta
-DescentRemake/Assets/Models/Materials/pattern 04/normal.tga.meta
-DescentRemake/Assets/Models/Materials/pattern 04/preview.jpg.meta
-DescentRemake/Assets/Models/Materials/pattern 08/Metal pattern 08.mat.meta
-DescentRemake/Assets/Models/Materials/pattern 08/diffuse.tga.meta
-DescentRemake/Assets/Models/Materials/pattern 08/normal.tga.meta
-DescentRemake/Assets/Models/Materials/pattern 08/preview.jpg.meta
-DescentRemake/Assets/Models/Materials/pattern 10/Metal pattern 10.mat.meta
-DescentRemake/Assets/Models/Materials/pattern 10/diffuse.tga.meta
-DescentRemake/Assets/Models/Materials/pattern 10/glow.tga.meta
-DescentRemake/Assets/Models/Materials/pattern 10/normal.tga.meta
-DescentRemake/Assets/Models/Materials/pattern 10/preview.jpg.meta
-DescentRemake/Assets/Models/Materials/pattern 11/Metal pattern 11.mat.meta
-DescentRemake/Assets/Models/Materials/pattern 11/diffuse.tga.meta
-DescentRemake/Assets/Models/Materials/pattern 11/normal.tga.meta
-DescentRemake/Assets/Models/Materials/pattern 11/preview.jpg.meta
-DescentRemake/Assets/Models/Materials/pattern 12/Metal pattern 12.mat.meta
-DescentRemake/Assets/Models/Materials/pattern 12/diffuse.tga.meta
-DescentRemake/Assets/Models/Materials/pattern 12/glow.tga.meta
-DescentRemake/Assets/Models/Materials/pattern 12/normal.tga.meta
-DescentRemake/Assets/Models/Materials/pattern 12/preview.jpg.meta
-DescentRemake/Assets/Models/Materials/pattern 16/Metal pattern 16.mat.meta
-DescentRemake/Assets/Models/Materials/pattern 16/diffuse.tga.meta
-DescentRemake/Assets/Models/Materials/pattern 16/glow.tga.meta
-DescentRemake/Assets/Models/Materials/pattern 16/normal.tga.meta
-DescentRemake/Assets/Models/Materials/pattern 16/preview.jpg.meta
-DescentRemake/Assets/Models/Materials/pattern 19/Metal pattern 19.mat.meta
-DescentRemake/Assets/Models/Materials/pattern 19/diffuse.tga.meta
-DescentRemake/Assets/Models/Materials/pattern 19/normal.tga.meta
-DescentRemake/Assets/Models/Materials/pattern 19/preview.jpg.meta
-DescentRemake/Assets/Models/Materials/pattern 20/Metal pattern 20.mat.meta
-DescentRemake/Assets/Models/Materials/pattern 20/diffuse.tga.meta
-DescentRemake/Assets/Models/Materials/pattern 20/normal.tga.meta
-DescentRemake/Assets/Models/Materials/pattern 20/preview.jpg.meta
-DescentRemake/Assets/Models/Materials/pattern 22/Metal pattern 22.mat.meta
-DescentRemake/Assets/Models/Materials/pattern 22/diffuse.tga.meta
-DescentRemake/Assets/Models/Materials/pattern 22/normal.tga.meta
-DescentRemake/Assets/Models/Materials/pattern 22/preview.jpg.meta
+DescentRemake/Assets/Graphics/Models/Level Components.meta~HEAD
+DescentRemake/Assets/Models/Materials/
