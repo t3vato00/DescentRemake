@@ -13,7 +13,6 @@ public class BulletMove : MonoBehaviour {
     private float radius = 0.35f;
     private float power = 50.0f;
     public int bulletDamage = 5;
-	public GameObject firedPlayer;
 
     // Use this for initialization
     void Start () {
@@ -23,7 +22,6 @@ public class BulletMove : MonoBehaviour {
         this.GetComponent<Rigidbody>().AddForce(direction * speed);
         GameObject.Destroy(this.gameObject, 5f);
     }
-
 	
 	// Update is called once per frame
 	void Update () {
@@ -32,16 +30,26 @@ public class BulletMove : MonoBehaviour {
 
     void OnTriggerEnter(Collider col)
     {
-        if (col.GetComponent<HealthShield>() != null) {
-            HealthShield enemy = col.GetComponent<HealthShield>();
-            enemy.takeDmg(bulletDamage);
-			if(firedPlayer != null)
-				firedPlayer.GetComponent<FiringWeapons>().addHit ();
-			if(col.GetComponent<HealthShield>().health <= 0) {
-				firedPlayer.GetComponent <FiringWeapons> ().addKill ();
-				Destroy (col.gameObject, 1.0f);
-			}
+
+
+
+        HealthShield enemy = col.GetComponent<HealthShield>();
+
+        if (enemy != null) {
+
+
+            if (col.tag == "Player")
+            {
+                enemy.GetComponent<PhotonView>().RPC("takeDmg", PhotonTargets.AllBuffered, bulletDamage);
+            }
+            else
+            {
+                enemy.takeDmg(bulletDamage);
+            }
+            
         }
+        else
+            Debug.Log("collisiontriggered");
         if (col.gameObject.tag != "Bullet" && col.gameObject.tag != "Player") {
         Vector3 explosionPos = this.transform.position;
         Collider[] colliders = Physics.OverlapSphere(explosionPos, radius);
@@ -51,6 +59,7 @@ public class BulletMove : MonoBehaviour {
 
             if (rb != null)
                 rb.AddExplosionForce(power, explosionPos, radius, 3.0f, ForceMode.Force);
+                
         }
             Object bulletHit = Instantiate(bullethiteffect, this.transform.position, this.transform.rotation);
             Destroy(this.gameObject);

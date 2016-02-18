@@ -15,6 +15,10 @@ public class NetworkCharacterMovement : Photon.MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (GetComponent<HealthShield> ().health <= 0) {
+			StartCoroutine (PostDeath ());
+			Destroy (this.gameObject, 2.0f);
+		}
 		if (photonView.isMine) {
 		} 
 		else {
