@@ -36,13 +36,10 @@ public class MissileMove : MonoBehaviour
 
     void OnTriggerEnter(Collider col)
     {
-
         HealthShield enemy = col.GetComponent<HealthShield>();
 
         if (enemy != null)
         {
-
-
             if (col.tag == "Player")
             {
                 enemy.GetComponent<PhotonView>().RPC("takeDmg", PhotonTargets.AllBuffered, missileDamage);
@@ -51,23 +48,23 @@ public class MissileMove : MonoBehaviour
             {
                 enemy.takeDmg(missileDamage);
             }
+        }
 
-            if (col.gameObject.tag != "Bullet" && col.gameObject.tag != "Player")
+        if (col.gameObject.tag != "Bullet")
+        {
+            Vector3 explosionPos = this.transform.position;
+            Collider[] colliders = Physics.OverlapSphere(explosionPos, radius);
+            foreach (Collider hit in colliders)
             {
-                Vector3 explosionPos = this.transform.position;
-                Collider[] colliders = Physics.OverlapSphere(explosionPos, radius);
-                foreach (Collider hit in colliders)
-                {
-                    Rigidbody rb = hit.GetComponent<Rigidbody>();
+                Rigidbody rb = hit.GetComponent<Rigidbody>();
 
-                    if (rb != null)
-                        rb.AddExplosionForce(power, explosionPos, radius, 3.0f, ForceMode.Force);
-                }
-                instantiatedObj = (GameObject)Instantiate(missilexplosion, this.transform.position, this.transform.rotation);
-                Destroy(this.gameObject);
-
-                Destroy(instantiatedObj, 1.8f);
+                if (rb != null)
+                    rb.AddExplosionForce(power, explosionPos, radius, 3.0f, ForceMode.Force);
             }
+            instantiatedObj = (GameObject)Instantiate(missilexplosion, this.transform.position, this.transform.rotation);
+            Destroy(this.gameObject);
+
+            Destroy(instantiatedObj, 1.8f);
         }
     }
 }
