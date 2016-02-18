@@ -7,17 +7,21 @@ public class NetworkCharacterMovement : Photon.MonoBehaviour {
 	Quaternion realRotation = Quaternion.identity;
     Vector3 realVelocity = Vector3.zero;
 	private string url = "http://oamkpo2016.esy.es/kills";
+	private bool respawned = false;
 
 	// Use this for initialization
 	void Start () {
-	
+		respawned = false;
 	}
-	
 	// Update is called once per frame
 	void Update () {
 		if (GetComponent<HealthShield> ().health <= 0) {
 			StartCoroutine (PostDeath ());
 			Destroy (this.gameObject, 2.0f);
+			if (!respawned) {
+				GameObject.Find ("_Scripts").GetComponent<NetworkManager> ().Respawn ();
+				respawned = true;
+			}
 		}
 		if (photonView.isMine) {
 		} 

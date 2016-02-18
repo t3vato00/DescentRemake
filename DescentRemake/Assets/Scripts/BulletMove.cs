@@ -15,8 +15,6 @@ public class BulletMove : MonoBehaviour {
     public int bulletDamage = 5;
     public GameObject firedPlayer;
 
-	[HideInInspector]
-	public GameObject firedPlayer;
 
     // Use this for initialization
     void Start () {

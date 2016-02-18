@@ -150,6 +150,10 @@ public class NetworkManager : MonoBehaviour
         SpawnMyPlayer();
     }
 
+	public void Respawn() {
+		SpawnMyPlayer ();
+	}
+
     void SpawnMyPlayer()
     {
 
