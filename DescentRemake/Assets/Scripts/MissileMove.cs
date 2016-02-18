@@ -21,7 +21,7 @@ public class MissileMove : MonoBehaviour
     {
         direction = this.transform.forward;
         player = GameObject.FindGameObjectWithTag("Player");
-        //this.GetComponent<Rigidbody>().velocity = player.GetComponent<Rigidbody>().velocity;
+        this.GetComponent<Rigidbody>().velocity = player.GetComponent<Rigidbody>().velocity;
         GameObject.Destroy(this.gameObject, 10f);
     }
 
