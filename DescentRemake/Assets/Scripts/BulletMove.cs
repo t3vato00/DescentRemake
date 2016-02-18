@@ -14,6 +14,7 @@ public class BulletMove : MonoBehaviour {
     private float power = 50.0f;
     private bool enemyshooter = false;
     public int bulletDamage = 5;
+    public GameObject firedPlayer;
 
     public GameObject firedPlayer;
 
