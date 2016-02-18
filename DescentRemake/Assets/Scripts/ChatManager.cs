@@ -31,10 +31,7 @@ public class ChatManager : MonoBehaviour, IChatClientListener
     private InputField ChatInput;
     private Button DisconnectButton;
   
-
     ExitGames.Client.Photon.Chat.AuthenticationValues authValues = new ExitGames.Client.Photon.Chat.AuthenticationValues();
-
-
 
     public void DebugReturn(ExitGames.Client.Photon.DebugLevel level, string message)
     {
@@ -44,8 +41,6 @@ public class ChatManager : MonoBehaviour, IChatClientListener
     // Use this for initialization
     void Start()
     {
-
-
         ChatText = GameObject.Find("ChatText").GetComponent<Text>();
         ChatInput = GameObject.Find("ChatInput").GetComponent<InputField>();
         DisconnectButton = GameObject.Find("DisconnectButton").GetComponent<Button>();
@@ -53,14 +48,12 @@ public class ChatManager : MonoBehaviour, IChatClientListener
         Application.runInBackground = true;
 
         _chat = new ChatClient(this);
-
-
-
     }
 
     // Update is called once per frame
     void Update()
     {
+
         if (_chat != null)
             _chat.Service();
 
@@ -69,7 +62,6 @@ public class ChatManager : MonoBehaviour, IChatClientListener
         if (!_connected)
         {
             Connect();
-
 
         }
         else
@@ -104,25 +96,21 @@ public class ChatManager : MonoBehaviour, IChatClientListener
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 _escpressed = !_escpressed;
-                Debug.Log("osuko");
+                
                 
                 if (_escpressed == true)
                 {
                     DisconnectButton.GetComponent<CanvasGroup>().alpha = 1;
                     DisconnectButton.enabled = true;
-                    /*if (Input.GetKeyDown(KeyCode.Return))
+                    if (Input.GetKeyDown(KeyCode.Return))
                     {
                         disconnectbutton();
-                    }*/
+                    }
                 }
                 else
                 DisconnectButton.GetComponent<CanvasGroup>().alpha = 0;
                 DisconnectButton.enabled = false;
-          
-            
-            }
-            
-
+            }         
         }
         
     }
@@ -254,6 +242,10 @@ public class ChatManager : MonoBehaviour, IChatClientListener
     public void disconnectbutton()
     {
 
+        SendMessage("Disconnected.");
+        
+        _connected = false;
+
     }
 
     IEnumerator GetID(string nName)
@@ -263,9 +255,19 @@ public class ChatManager : MonoBehaviour, IChatClientListener
         JsonData data = JsonMapper.ToObject(Get_url);
         id = int.Parse((string)data["Reply"][0]["ID"]);
 
-        Debug.Log("ID: " + nName + " " + id);
+      //  Debug.Log("ID: " + nName + " " + id);
 
         yield return Get_url; // Wait until the download is done
+    }
+
+    //*** Message all for kills
+    public void killStreak(string killer, int killCount)
+    {
+        SendMessage(killer + " got a kill!");
+        if (killCount % 5 == 0)
+        {
+            SendMessage(killer + " " + killCount + " kills in a row!!!");     
+        }
     }
 
 }
