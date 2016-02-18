@@ -11,6 +11,7 @@ public class BulletMove : MonoBehaviour {
     private float power = 50.0f;
     public int bulletDamage = 5;
     private GameObject player;
+    public GameObject firedPlayer;
 
     // Use this for initialization
     void Start () {

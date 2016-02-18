@@ -12,6 +12,7 @@ public class MissileMove : MonoBehaviour
     private GameObject instantiatedObj;
     public int missileDamage = 20;
     private GameObject player;
+    public GameObject firedPlayer;
 
     void Start()
     {
