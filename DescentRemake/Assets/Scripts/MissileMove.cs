@@ -15,6 +15,9 @@ public class MissileMove : MonoBehaviour
     private GameObject instantiatedObj;
     public int missileDamage = 20;
 
+	[HideInInspector]
+	public GameObject firedPlayer;
+
     void Start()
     {
         direction = this.transform.forward;
@@ -66,4 +69,5 @@ public class MissileMove : MonoBehaviour
             Destroy(instantiatedObj, 1.8f);
         }
     }
+	}
 }
