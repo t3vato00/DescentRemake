@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEditor;
 using System.Collections;
 
 /*  Reads player's inputs and uses class "FiringWeapons" to initiate shooting and item usage.
