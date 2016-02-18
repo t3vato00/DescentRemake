@@ -14,6 +14,7 @@ public class MissileMove : MonoBehaviour
     private float power = 100.0f;
     private GameObject instantiatedObj;
     public int missileDamage = 20;
+
     public GameObject firedPlayer;
 
     void Start()
@@ -67,3 +68,5 @@ public class MissileMove : MonoBehaviour
         }
     }
 }
+
+
