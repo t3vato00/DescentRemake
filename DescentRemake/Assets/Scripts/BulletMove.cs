@@ -13,6 +13,7 @@ public class BulletMove : MonoBehaviour {
     private float radius = 0.35f;
     private float power = 50.0f;
     public int bulletDamage = 5;
+    public GameObject firedPlayer;
 
 	[HideInInspector]
 	public GameObject firedPlayer;
