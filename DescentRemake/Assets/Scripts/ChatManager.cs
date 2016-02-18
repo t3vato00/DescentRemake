@@ -25,15 +25,13 @@ public class ChatManager : MonoBehaviour, IChatClientListener
     private string _input = "";
 
     private bool _connected;
+    private bool _escpressed;
 
     private Text ChatText;
     private InputField ChatInput;
-<<<<<<< HEAD
 
-=======
     private Button DisconnectButton;
   
->>>>>>> 523530014a93d5e0a0e7fa04604a9d7656103086
     ExitGames.Client.Photon.Chat.AuthenticationValues authValues = new ExitGames.Client.Photon.Chat.AuthenticationValues();
 
     public void DebugReturn(ExitGames.Client.Photon.DebugLevel level, string message)
@@ -95,10 +93,8 @@ public class ChatManager : MonoBehaviour, IChatClientListener
                     ChatInput.enabled = true;
                 }
             }
-<<<<<<< HEAD
 
 
-=======
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 _escpressed = !_escpressed;
@@ -117,7 +113,6 @@ public class ChatManager : MonoBehaviour, IChatClientListener
                 DisconnectButton.GetComponent<CanvasGroup>().alpha = 0;
                 DisconnectButton.enabled = false;
             }         
->>>>>>> 523530014a93d5e0a0e7fa04604a9d7656103086
         }
 
         
@@ -246,8 +241,6 @@ public class ChatManager : MonoBehaviour, IChatClientListener
     {
         Debug.Log(string.Format("Friend {0} set status to {1}", user, status));
     }
-<<<<<<< HEAD
-=======
 
     public void disconnectbutton()
     {
@@ -280,7 +273,6 @@ public class ChatManager : MonoBehaviour, IChatClientListener
         }
     }
 
->>>>>>> 523530014a93d5e0a0e7fa04604a9d7656103086
 }
 
 

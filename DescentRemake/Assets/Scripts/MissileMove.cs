@@ -11,16 +11,14 @@ public class MissileMove : MonoBehaviour
     private float power = 100.0f;
     private GameObject instantiatedObj;
     public int missileDamage = 20;
+    private GameObject player;
 
     void Start()
     {
         direction = this.transform.forward;
-<<<<<<< HEAD
         speed = 1f;
-=======
         player = GameObject.FindGameObjectWithTag("Player");
         //this.GetComponent<Rigidbody>().velocity = player.GetComponent<Rigidbody>().velocity;
->>>>>>> 523530014a93d5e0a0e7fa04604a9d7656103086
         GameObject.Destroy(this.gameObject, 10f);
     }
 
@@ -28,7 +26,7 @@ public class MissileMove : MonoBehaviour
     {
         if (speed < 50)
         {
-            speed+=2.5f;
+            speed += 2.5f;
         }
         this.GetComponent<Rigidbody>().AddForce(direction * speed);
     }
@@ -38,7 +36,8 @@ public class MissileMove : MonoBehaviour
 
         HealthShield enemy = col.GetComponent<HealthShield>();
 
-        if (enemy != null) {
+        if (enemy != null)
+        {
 
 
             if (col.tag == "Player")
@@ -50,21 +49,22 @@ public class MissileMove : MonoBehaviour
                 enemy.takeDmg(missileDamage);
             }
 
-        if (col.gameObject.tag != "Bullet" && col.gameObject.tag != "Player")
-        {
-            Vector3 explosionPos = this.transform.position;
-            Collider[] colliders = Physics.OverlapSphere(explosionPos, radius);
-            foreach (Collider hit in colliders)
+            if (col.gameObject.tag != "Bullet" && col.gameObject.tag != "Player")
             {
-                Rigidbody rb = hit.GetComponent<Rigidbody>();
+                Vector3 explosionPos = this.transform.position;
+                Collider[] colliders = Physics.OverlapSphere(explosionPos, radius);
+                foreach (Collider hit in colliders)
+                {
+                    Rigidbody rb = hit.GetComponent<Rigidbody>();
 
-                if (rb != null)
-                    rb.AddExplosionForce(power, explosionPos, radius, 3.0f, ForceMode.Force);
+                    if (rb != null)
+                        rb.AddExplosionForce(power, explosionPos, radius, 3.0f, ForceMode.Force);
+                }
+                instantiatedObj = (GameObject)Instantiate(missilexplosion, this.transform.position, this.transform.rotation);
+                Destroy(this.gameObject);
+
+                Destroy(instantiatedObj, 1.8f);
             }
-            instantiatedObj = (GameObject) Instantiate(missilexplosion, this.transform.position, this.transform.rotation);
-            Destroy(this.gameObject);
-
-            Destroy(instantiatedObj, 1.8f);
         }
     }
 }

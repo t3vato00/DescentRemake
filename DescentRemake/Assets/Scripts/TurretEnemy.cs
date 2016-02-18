@@ -43,12 +43,7 @@ public class TurretEnemy : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-<<<<<<< HEAD
-=======
 
-
-
->>>>>>> 523530014a93d5e0a0e7fa04604a9d7656103086
         foreach (GameObject player in players) {
             if (Vector3.Distance(this.transform.position, player.transform.position) < nearestPlayerDistance)
             {

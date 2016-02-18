@@ -10,16 +10,14 @@ public class BulletMove : MonoBehaviour {
     private float radius = 0.35f;
     private float power = 50.0f;
     public int bulletDamage = 5;
+    private GameObject player;
 
     // Use this for initialization
     void Start () {
         direction = this.transform.forward;
-<<<<<<< HEAD
         speed = 1000f;
-=======
         player = GameObject.FindGameObjectWithTag("Player");
         //this.GetComponent<Rigidbody>().velocity = player.GetComponent<Rigidbody>().velocity;
->>>>>>> 523530014a93d5e0a0e7fa04604a9d7656103086
         this.GetComponent<Rigidbody>().AddForce(direction * speed);
         GameObject.Destroy(this.gameObject, 5f);
     }
