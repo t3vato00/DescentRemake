@@ -29,6 +29,7 @@ public class FiringWeapons : MonoBehaviour {
     private bool isEnemy = false;
 
 	public int hitCount;
+	public int killCount;
 
 	// Use this for initialization
 	void Start () {
@@ -69,6 +70,13 @@ public class FiringWeapons : MonoBehaviour {
 
 	public void addHit() {
 		hitCount++;
+	}
+
+	public void addKill() {
+		killCount++;
+		Debug.Log ("Adding kill");
+		GetComponent<ChatManager> ().killStreak (GetComponent<ChatManager> ().username, killCount);
+		GetComponent<NetworkCharacterMovement> ().sendKill ();
 	}
 
     public void InitiateStandardShoot(float rateForFire, string modeForFire)

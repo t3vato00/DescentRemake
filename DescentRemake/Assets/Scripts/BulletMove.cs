@@ -16,6 +16,7 @@ public class BulletMove : MonoBehaviour {
     public int bulletDamage = 5;
     public GameObject firedPlayer;
 
+
     // Use this for initialization
     void Start () {
         direction = this.transform.forward;
@@ -71,7 +72,12 @@ public class BulletMove : MonoBehaviour {
             Object bulletHit = Instantiate(bullethiteffect, this.transform.position, this.transform.rotation);
             Destroy(this.gameObject);
             Destroy(bulletHit, 1.0f);
-            enemy.takeDmg(bulletDamage);
+			if (enemy != null) {
+				if (col.tag == "Player") {
+					enemy.GetComponent<PhotonView> ().RPC ("takeDmg", PhotonTargets.AllBuffered, bulletDamage);
+				}
+				enemy.takeDmg (bulletDamage);
+			}
         }
     }
 }
