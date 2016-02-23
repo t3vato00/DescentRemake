@@ -17,9 +17,11 @@ public class NetworkCharacterMovement : Photon.MonoBehaviour {
 	void Update () {
 		if (GetComponent<HealthShield> ().health <= 0) {
 			StartCoroutine (PostDeath ());
-			Destroy (this.gameObject, 2.0f);
 			if (!respawned) {
-				GameObject.Find ("_Scripts").GetComponent<NetworkManager> ().Respawn ();
+				GetComponent<HealthShield> ().health = 100;
+				Vector3 respawnSpot = GameObject.Find ("_Scripts").GetComponent<NetworkManager> ().Respawn ();
+				this.transform.position = respawnSpot;
+				GetComponent<FiringWeapons> ().killCount = 0;
 				respawned = true;
 			}
 		}

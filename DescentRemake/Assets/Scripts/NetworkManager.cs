@@ -150,9 +150,11 @@ public class NetworkManager : MonoBehaviour
         SpawnMyPlayer();
     }
 
-	public void Respawn() {
-		SpawnMyPlayer ();
+	public Vector3 Respawn() {
+		SpawnSpot mySpawnSpot = spawnSpots [Random.Range (0, spawnSpots.Length)];
+		return mySpawnSpot.transform.position;
 	}
+
 
     void SpawnMyPlayer()
     {
