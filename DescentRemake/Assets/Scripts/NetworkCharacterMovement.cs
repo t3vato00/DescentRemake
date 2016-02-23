@@ -18,12 +18,9 @@ public class NetworkCharacterMovement : Photon.MonoBehaviour {
 		if (GetComponent<HealthShield> ().health <= 0) {
 			StartCoroutine (PostDeath ());
 			if (!respawned) {
-				GetComponent<HealthShield> ().health = 100;
-				Vector3 respawnSpot = GameObject.Find ("_Scripts").GetComponent<NetworkManager> ().Respawn ();
-				this.transform.position = respawnSpot;
-				GetComponent<FiringWeapons> ().killCount = 0;
-				respawned = true;
+				GetComponent<PhotonView> ().RPC ("respawn", PhotonTargets.AllBuffered);
 			}
+			respawned = false;
 		}
 		if (photonView.isMine) {
 		} 
@@ -33,6 +30,15 @@ public class NetworkCharacterMovement : Photon.MonoBehaviour {
             transform.GetComponent<Rigidbody>().velocity = realVelocity;
 		}
 
+	}
+	[PunRPC]
+	private void respawn() {
+		Destroy (GetComponent<HealthShield> ());
+		gameObject.AddComponent <HealthShield> ();
+		Vector3 respawnSpot = GameObject.Find ("_Scripts").GetComponent<NetworkManager> ().Respawn ();
+		this.transform.position = respawnSpot;
+		GetComponent<FiringWeapons> ().killCount = 0;
+		respawned = true;
 	}
 
 	public void sendKill() {

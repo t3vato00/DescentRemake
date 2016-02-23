@@ -22,8 +22,8 @@ public class HealthShield : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        /*health = maxHealth;
-        shield = maxShield;*/
+        health = maxHealth;
+        shield = maxShield;
   
     }
 
@@ -45,7 +45,7 @@ public class HealthShield : MonoBehaviour
         {
             if(this.gameObject.tag == "Player")
             {
-                GameObject.Destroy(this.gameObject);
+                //GameObject.Destroy(this.gameObject);
             }
             health = 0;
         }
@@ -60,6 +60,10 @@ public class HealthShield : MonoBehaviour
 			stext.text = "SHIELD: " + shield;
 		}
     }
+	[PunRPC]
+	public void restoreHealth() {
+		this.health = 100;
+	}
 
     // Heal function
     public void heal(int healDone)
