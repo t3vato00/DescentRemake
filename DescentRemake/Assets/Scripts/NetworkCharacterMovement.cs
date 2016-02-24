@@ -7,7 +7,8 @@ public class NetworkCharacterMovement : Photon.MonoBehaviour {
 	Quaternion realRotation = Quaternion.identity;
     Vector3 realVelocity = Vector3.zero;
 	private string url = "http://oamkpo2016.esy.es/kills";
-	private bool respawned = true;
+    private string url2 = "http://oamkpo2016.esy.es/shots";
+    private bool respawned = true;
 
 	// Use this for initialization
 	void Start () {
@@ -71,7 +72,18 @@ public class NetworkCharacterMovement : Photon.MonoBehaviour {
 		if (hs_post.error != null) {
 			Debug.Log ("Error posting data to database: " + hs_post.error);
 		}
-	}
+
+        WWWForm wwwForm2 = new WWWForm();
+        wwwForm2.AddField("ID", GetComponent<ChatManager>().id.ToString());
+        wwwForm2.AddField("hits", GetComponent<FiringWeapons>().fireCount);
+        GetComponent<FiringWeapons>().fireCount = 0;
+        WWW hs_post2 = new WWW(url2, wwwForm);
+        yield return hs_post2;
+        if (hs_post2.error != null)
+        {
+            Debug.Log("Error posting data to database: " + hs_post2.error);
+        }
+    }
 
 
 	
