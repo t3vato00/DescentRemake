@@ -8,6 +8,8 @@ public class FiringWeapons : MonoBehaviour {
     public GameObject flare;
     public GameObject emp;
     public GameObject decoy;
+    private GameObject instanceofcreatedprojectileleft;
+    private GameObject instanceofcreatedprojectileright;
     private Transform bulletpointleft;
     private Transform bulletpointright;
     private Transform bulletpointupper;
@@ -24,8 +26,11 @@ public class FiringWeapons : MonoBehaviour {
     private string firemode;
     private string itemname;
     private bool autofire;
+    private bool isEnemy = false;
+    private string url = "http://oamkpo2016.esy.es/kills";
 
-	public int hitCount;
+    public int hitCount = 0;
+	public int killCount = 0;
 
 	// Use this for initialization
 	void Start () {
@@ -42,6 +47,11 @@ public class FiringWeapons : MonoBehaviour {
         missilerate = 0.5f;
         itemrate = 1.0f;
         autofire = false;
+
+        if(this.gameObject.tag == "Turret")
+        {
+            isEnemy = true;
+        }
     }
 	
 	// Update is called once per frame
@@ -63,6 +73,14 @@ public class FiringWeapons : MonoBehaviour {
 		hitCount++;
 	}
 
+	public void addKill() {
+		killCount++;
+		Debug.Log ("Adding kill");
+		GetComponent<ChatManager> ().killStreak (GetComponent<ChatManager> ().username, killCount);
+        StartCoroutine(PostKill());
+        //GetComponent<NetworkCharacterMovement> ().sendKill ();
+	}
+
     public void InitiateStandardShoot(float rateForFire, string modeForFire)
     {
         firerate = rateForFire;
@@ -74,8 +92,13 @@ public class FiringWeapons : MonoBehaviour {
     {
         if (Time.time > nextfire) {
             if (firemode == "standard") {
-                Instantiate(bullet, bulletpointleft.position, bulletpointleft.rotation);
-                Instantiate(bullet, bulletpointright.position, bulletpointright.rotation);
+                instanceofcreatedprojectileleft = Instantiate(bullet, bulletpointleft.position, bulletpointleft.rotation) as GameObject;
+                instanceofcreatedprojectileright = Instantiate(bullet, bulletpointright.position, bulletpointright.rotation) as GameObject;
+                if (isEnemy)
+                {
+                    instanceofcreatedprojectileleft.GetComponent<BulletMove>().EnemyShotThisProjectile();
+                    instanceofcreatedprojectileright.GetComponent<BulletMove>().EnemyShotThisProjectile();
+                }
                 nextfire = Time.time + firerate;
             }
             else if (firemode == "triple")
@@ -136,6 +159,20 @@ public class FiringWeapons : MonoBehaviour {
             decoyrotation *= Quaternion.Euler(90, 0, 0);
             Instantiate(decoy, missilepoint.position, decoyrotation);
             nextitem = Time.time + itemrate;
+        }
+    }
+
+    IEnumerator PostKill()
+    {
+        WWWForm wwwForm = new WWWForm();
+        wwwForm.AddField("ID", GetComponent<ChatManager>().id.ToString());
+        wwwForm.AddField("kills", "1");
+        WWW hs_post = new WWW(url, wwwForm);
+
+        yield return hs_post;
+        if (hs_post.error != null)
+        {
+            Debug.Log("Error posting data to database: " + hs_post.error);
         }
     }
 }
