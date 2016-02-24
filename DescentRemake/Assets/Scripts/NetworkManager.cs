@@ -150,6 +150,12 @@ public class NetworkManager : MonoBehaviour
         SpawnMyPlayer();
     }
 
+	public Vector3 Respawn() {
+		SpawnSpot mySpawnSpot = spawnSpots [Random.Range (0, spawnSpots.Length)];
+		return mySpawnSpot.transform.position;
+	}
+
+
     void SpawnMyPlayer()
     {
 
@@ -168,6 +174,7 @@ public class NetworkManager : MonoBehaviour
         myPlayerGO.GetComponent<NetworkCharacterMovement>().enabled = true;
         myPlayerGO.GetComponent<MouseMovement>().enabled = true;
         myPlayerGO.GetComponent<ChatManager>().enabled = true;
+		myPlayerGO.GetComponent<HealthShield> ().enabled = true;
 
         myPlayerGO.GetComponent<PlayerMovement>().enabled = true;
 
@@ -178,16 +185,12 @@ public class NetworkManager : MonoBehaviour
         }
         myPlayerGO.GetComponent<PlayerShoot>().enabled = true;
         myPlayerGO.GetComponent<FiringWeapons>().enabled = true;
-        myPlayerGO.GetComponent<TrackFiringScript>().enabled = true;
         myPlayerGO.GetComponentInChildren<AudioListener>().enabled = true;
         myPlayerGO.GetComponent<HealthShield>().enabled = true;
        // myPlayerGO.GetComponent<UIController>().enabled = true;
 
 
         //myPlayerGO.GetComponentInChildren<> ().enabled = true;
-
-
-
     }
 
 
