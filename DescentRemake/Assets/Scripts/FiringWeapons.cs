@@ -28,12 +28,15 @@ public class FiringWeapons : MonoBehaviour {
     private bool autofire;
     private bool isEnemy = false;
     private string url = "http://oamkpo2016.esy.es/kills";
+    private bool bKilled = true;
+
 
     public int hitCount = 0;
 	public int killCount = 0;
+    public int fireCount = 0;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         missilepoint = this.transform.Find("MissilePoint").transform;
         bulletpointleft = this.transform.Find("BulletPointLeft").transform;
         bulletpointright = this.transform.Find("BulletPointRight").transform;
@@ -61,6 +64,7 @@ public class FiringWeapons : MonoBehaviour {
             Instantiate(bullet, bulletpointleft.position, bulletpointleft.rotation);
             Instantiate(bullet, bulletpointright.position, bulletpointright.rotation);
             nextfire = Time.time + firerate;
+
         }
 		if (bullet != null) {
 			bullet.GetComponent<BulletMove> ().firedPlayer = gameObject;
@@ -69,16 +73,27 @@ public class FiringWeapons : MonoBehaviour {
     }
 
 
-	public void addHit() {
+	public void addHit()
+    {
 		hitCount++;
 	}
 
-	public void addKill() {
-		killCount++;
-		Debug.Log ("Adding kill");
-		GetComponent<ChatManager> ().killStreak (GetComponent<ChatManager> ().username, killCount);
-        StartCoroutine(PostKill());
-        //GetComponent<NetworkCharacterMovement> ().sendKill ();
+    public void addFire(int iFired)
+    {
+        fireCount = fireCount + iFired;
+    }
+
+    public void addKill()
+    {
+        if (bKilled)
+        {
+            killCount++;
+            Debug.Log("Adding kill");
+            GetComponent<ChatManager>().killStreak(GetComponent<ChatManager>().username, killCount);
+            StartCoroutine(PostKill());
+            //GetComponent<NetworkCharacterMovement> ().sendKill ();
+            bKilled = false;
+        }
 	}
 
     public void InitiateStandardShoot(float rateForFire, string modeForFire)
@@ -100,6 +115,7 @@ public class FiringWeapons : MonoBehaviour {
                     instanceofcreatedprojectileright.GetComponent<BulletMove>().EnemyShotThisProjectile();
                 }
                 nextfire = Time.time + firerate;
+                addFire(2);
             }
             else if (firemode == "triple")
             {
@@ -107,6 +123,7 @@ public class FiringWeapons : MonoBehaviour {
                 Instantiate(bullet, bulletpointright.position, bulletpointright.rotation);
                 Instantiate(bullet, bulletpointupper.position, bulletpointupper.rotation);
                 nextfire = Time.time + firerate;
+                addFire(3);
             }
             else if (firemode == "auto")
             {
@@ -139,6 +156,7 @@ public class FiringWeapons : MonoBehaviour {
         {
             Instantiate(missile, missilepoint.position, missilepoint.rotation);
             nextmissile = Time.time + missilerate;
+            addFire(1);
         }
     }
 
@@ -170,6 +188,8 @@ public class FiringWeapons : MonoBehaviour {
         WWW hs_post = new WWW(url, wwwForm);
 
         yield return hs_post;
+        bKilled = true;
+
         if (hs_post.error != null)
         {
             Debug.Log("Error posting data to database: " + hs_post.error);
