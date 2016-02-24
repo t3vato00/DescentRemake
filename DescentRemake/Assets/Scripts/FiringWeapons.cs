@@ -31,8 +31,16 @@ public class FiringWeapons : MonoBehaviour {
 	public int hitCount;
 	public int killCount;
 
+    PhotonView photonView;
+
+    
+
+
 	// Use this for initialization
 	void Start () {
+        photonView = PhotonView.Get(this);
+
+
         missilepoint = this.transform.Find("MissilePoint").transform;
         bulletpointleft = this.transform.Find("BulletPointLeft").transform;
         bulletpointright = this.transform.Find("BulletPointRight").transform;
@@ -65,6 +73,9 @@ public class FiringWeapons : MonoBehaviour {
 			bullet.GetComponent<BulletMove> ().firedPlayer = gameObject;
 			missile.GetComponent<MissileMove> ().firedPlayer = gameObject;
 		}
+
+
+
     }
 
 
@@ -90,8 +101,12 @@ public class FiringWeapons : MonoBehaviour {
     {
         if (Time.time > nextfire) {
             if (firemode == "standard") {
-                instanceofcreatedprojectileleft = Instantiate(bullet, bulletpointleft.position, bulletpointleft.rotation) as GameObject;
-                instanceofcreatedprojectileright = Instantiate(bullet, bulletpointright.position, bulletpointright.rotation) as GameObject;
+                //instanceofcreatedprojectileleft = Instantiate(bullet, bulletpointleft.position, bulletpointleft.rotation) as GameObject;
+                //instanceofcreatedprojectileright = Instantiate(bullet, bulletpointright.position, bulletpointright.rotation) as GameObject;
+
+                photonView.RPC("BulletFX", PhotonTargets.All, bulletpointright.position, bulletpointright.rotation);
+                photonView.RPC("BulletFX", PhotonTargets.All, bulletpointleft.position, bulletpointleft.rotation);
+                
                 if (isEnemy)
                 {
                     instanceofcreatedprojectileleft.GetComponent<BulletMove>().EnemyShotThisProjectile();
@@ -110,6 +125,7 @@ public class FiringWeapons : MonoBehaviour {
             {
                 autofire = true;
             }
+
         }
     }
 
@@ -135,7 +151,8 @@ public class FiringWeapons : MonoBehaviour {
     {
         if (Time.time > nextmissile)
         {
-            Instantiate(missile, missilepoint.position, missilepoint.rotation);
+
+            photonView.RPC("MissileFX", PhotonTargets.All, missilepoint.position, missilepoint.rotation);
             nextmissile = Time.time + missilerate;
         }
     }
@@ -158,5 +175,22 @@ public class FiringWeapons : MonoBehaviour {
             Instantiate(decoy, missilepoint.position, decoyrotation);
             nextitem = Time.time + itemrate;
         }
+    }
+    [PunRPC]
+    void BulletFX(Vector3 bulletPointPosition, Quaternion bulletPointRotation)
+    {
+        Debug.Log(bulletPointPosition);
+        Instantiate(bullet, bulletPointPosition, bulletPointRotation);
+
+
+    }
+
+    [PunRPC]
+    void MissileFX(Vector3 MissilePointPosition, Quaternion MissilePointRotation)
+    {
+        Debug.Log(MissilePointPosition);
+        Instantiate(missile, MissilePointPosition, MissilePointRotation);
+
+
     }
 }
