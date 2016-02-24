@@ -5,9 +5,9 @@ using System.Collections;
 public class HealthShield : MonoBehaviour
 {
 
-    public int health;
+    public int health = 100;
     public int maxHealth = 100;
-    public int shield;
+    public int shield = 100;
     public int maxShield = 100;
     private float dTime = 0;
     private float nextTimeStep = 0;
@@ -41,7 +41,7 @@ public class HealthShield : MonoBehaviour
             }
         }
 
-        if (health <- 0)
+        if (health <= 0)
         {
             if(this.gameObject.tag == "Player")
             {
