@@ -27,18 +27,23 @@ public class FiringWeapons : MonoBehaviour {
     private string itemname;
     private bool autofire;
     private bool isEnemy = false;
+    private string url = "http://oamkpo2016.esy.es/kills";
+    private bool bKilled = true;
 
-	public int hitCount;
-	public int killCount;
+    public int hitCount = 0;
+	public int killCount = 0;
+    public int fireCount = 0;
 
     PhotonView photonView;
 
     
 
+    // Use this for initialization
+    void Start () {
+                photonView = PhotonView.Get(this);
 
-	// Use this for initialization
-	void Start () {
-        photonView = PhotonView.Get(this);
+
+
 
 
         missilepoint = this.transform.Find("MissilePoint").transform;
@@ -68,6 +73,7 @@ public class FiringWeapons : MonoBehaviour {
             Instantiate(bullet, bulletpointleft.position, bulletpointleft.rotation);
             Instantiate(bullet, bulletpointright.position, bulletpointright.rotation);
             nextfire = Time.time + firerate;
+
         }
 		if (bullet != null) {
 			bullet.GetComponent<BulletMove> ().firedPlayer = gameObject;
@@ -79,15 +85,26 @@ public class FiringWeapons : MonoBehaviour {
     }
 
 
-	public void addHit() {
+	public void addHit()
+    {
 		hitCount++;
 	}
 
-	public void addKill() {
-		killCount++;
-		Debug.Log ("Adding kill");
-		GetComponent<ChatManager> ().killStreak (GetComponent<ChatManager> ().username, killCount);
-		GetComponent<NetworkCharacterMovement> ().sendKill ();
+    public void addFire(int iFired)
+    {
+        fireCount = fireCount + iFired;
+    }
+
+    public void addKill()
+    {
+        if (bKilled)
+        {
+            killCount++;
+            Debug.Log("Adding kill");
+            GetComponent<ChatManager>().killStreak(GetComponent<ChatManager>().username, killCount);
+            StartCoroutine(PostKill());
+            bKilled = false;
+        }
 	}
 
     public void InitiateStandardShoot(float rateForFire, string modeForFire)
@@ -113,6 +130,7 @@ public class FiringWeapons : MonoBehaviour {
                     instanceofcreatedprojectileright.GetComponent<BulletMove>().EnemyShotThisProjectile();
                 }
                 nextfire = Time.time + firerate;
+                addFire(2);
             }
             else if (firemode == "triple")
             {
@@ -120,6 +138,7 @@ public class FiringWeapons : MonoBehaviour {
                 Instantiate(bullet, bulletpointright.position, bulletpointright.rotation);
                 Instantiate(bullet, bulletpointupper.position, bulletpointupper.rotation);
                 nextfire = Time.time + firerate;
+                addFire(3);
             }
             else if (firemode == "auto")
             {
@@ -154,6 +173,7 @@ public class FiringWeapons : MonoBehaviour {
 
             photonView.RPC("MissileFX", PhotonTargets.All, missilepoint.position, missilepoint.rotation);
             nextmissile = Time.time + missilerate;
+            addFire(1);
         }
     }
 
@@ -176,6 +196,7 @@ public class FiringWeapons : MonoBehaviour {
             nextitem = Time.time + itemrate;
         }
     }
+
     [PunRPC]
     void BulletFX(Vector3 bulletPointPosition, Quaternion bulletPointRotation)
     {
@@ -190,7 +211,25 @@ public class FiringWeapons : MonoBehaviour {
     {
         Debug.Log(MissilePointPosition);
         Instantiate(missile, MissilePointPosition, MissilePointRotation);
+    }
 
+
+
+
+    IEnumerator PostKill()
+    {
+        WWWForm wwwForm = new WWWForm();
+        wwwForm.AddField("ID", GetComponent<ChatManager>().id.ToString());
+        wwwForm.AddField("kills", "1");
+        WWW hs_post = new WWW(url, wwwForm);
+
+        yield return hs_post;
+        bKilled = true;
+
+        if (hs_post.error != null)
+        {
+            Debug.Log("Error posting data to database: " + hs_post.error);
+        }
 
     }
 }

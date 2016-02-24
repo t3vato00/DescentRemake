@@ -15,6 +15,7 @@ public class BulletMove : MonoBehaviour {
     private bool enemyshooter = false;
     public int bulletDamage = 5;
     public GameObject firedPlayer;
+    
 
 
     // Use this for initialization
@@ -75,9 +76,17 @@ public class BulletMove : MonoBehaviour {
 			if (enemy != null) {
 				if (col.tag == "Player") {
 					enemy.GetComponent<PhotonView> ().RPC ("takeDmg", PhotonTargets.AllBuffered, bulletDamage);
-				}
+                    firedPlayer.GetComponent<FiringWeapons>().addHit();
+
+                    if (enemy.GetComponent<HealthShield>().health < 0)
+                    {
+                        firedPlayer.GetComponent<FiringWeapons>().addKill();
+                    }
+
+                }
 				enemy.takeDmg (bulletDamage);
 			}
         }
     }
+
 }

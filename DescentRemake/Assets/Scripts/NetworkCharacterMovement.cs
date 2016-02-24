@@ -7,16 +7,16 @@ public class NetworkCharacterMovement : Photon.MonoBehaviour {
 	Quaternion realRotation = Quaternion.identity;
     Vector3 realVelocity = Vector3.zero;
 	private string url = "http://oamkpo2016.esy.es/kills";
-	private bool respawned = false;
+    private string url2 = "http://oamkpo2016.esy.es/shots";
+    private bool respawned = true;
 
 	// Use this for initialization
 	void Start () {
-		respawned = false;
+		//respawned = false;
 	}
 	// Update is called once per frame
 	void Update () {
 		if (GetComponent<HealthShield> ().health <= 0) {
-			StartCoroutine (PostDeath ());
 			if (!respawned) {
 				GetComponent<PhotonView> ().RPC ("respawn", PhotonTargets.AllBuffered);
 			}
@@ -33,16 +33,14 @@ public class NetworkCharacterMovement : Photon.MonoBehaviour {
 	}
 	[PunRPC]
 	private void respawn() {
+
+		StartCoroutine (PostDeath ());
 		Destroy (GetComponent<HealthShield> ());
 		gameObject.AddComponent <HealthShield> ();
 		Vector3 respawnSpot = GameObject.Find ("_Scripts").GetComponent<NetworkManager> ().Respawn ();
 		this.transform.position = respawnSpot;
 		GetComponent<FiringWeapons> ().killCount = 0;
 		respawned = true;
-	}
-
-	public void sendKill() {
-		StartCoroutine (PostKill ());
 	}
 
 	public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
@@ -63,25 +61,30 @@ public class NetworkCharacterMovement : Photon.MonoBehaviour {
 	}
 
 	IEnumerator PostDeath() {
-		WWWForm wwwForm = new WWWForm ();
+        Debug.Log("Osumia: " + GetComponent<FiringWeapons>().hitCount);
+        WWWForm wwwForm = new WWWForm ();
 		wwwForm.AddField ("ID", GetComponent<ChatManager> ().id.ToString ());
 		wwwForm.AddField ("killed", "1");
+        wwwForm.AddField("hits", GetComponent<FiringWeapons>().hitCount);
+        GetComponent<FiringWeapons>().hitCount = 0;
 		WWW hs_post = new WWW (url, wwwForm);
 		yield return hs_post;
 		if (hs_post.error != null) {
 			Debug.Log ("Error posting data to database: " + hs_post.error);
 		}
-	}
 
-	IEnumerator PostKill() {
-		WWWForm wwwForm = new WWWForm ();
-		wwwForm.AddField ("ID", GetComponent<ChatManager> ().id.ToString ());
-		wwwForm.AddField ("kills", "1");
-		WWW hs_post = new WWW (url, wwwForm);
-		yield return hs_post;
-		if (hs_post.error != null) {
-			Debug.Log ("Error posting data to database: " + hs_post.error);
-		}
-	}
+        WWWForm wwwForm2 = new WWWForm();
+        wwwForm2.AddField("ID", GetComponent<ChatManager>().id.ToString());
+        wwwForm2.AddField("hits", GetComponent<FiringWeapons>().fireCount);
+        GetComponent<FiringWeapons>().fireCount = 0;
+        WWW hs_post2 = new WWW(url2, wwwForm);
+        yield return hs_post2;
+        if (hs_post2.error != null)
+        {
+            Debug.Log("Error posting data to database: " + hs_post2.error);
+        }
+    }
+
+
 	
 }
