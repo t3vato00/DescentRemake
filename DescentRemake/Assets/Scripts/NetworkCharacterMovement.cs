@@ -16,7 +16,6 @@ public class NetworkCharacterMovement : Photon.MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (GetComponent<HealthShield> ().health <= 0) {
-			StartCoroutine (PostDeath ());
 			if (!respawned) {
 				GetComponent<PhotonView> ().RPC ("respawn", PhotonTargets.AllBuffered);
 			}
@@ -33,6 +32,8 @@ public class NetworkCharacterMovement : Photon.MonoBehaviour {
 	}
 	[PunRPC]
 	private void respawn() {
+
+		StartCoroutine (PostDeath ());
 		Destroy (GetComponent<HealthShield> ());
 		gameObject.AddComponent <HealthShield> ();
 		Vector3 respawnSpot = GameObject.Find ("_Scripts").GetComponent<NetworkManager> ().Respawn ();
