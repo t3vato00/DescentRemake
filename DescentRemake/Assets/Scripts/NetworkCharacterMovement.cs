@@ -7,11 +7,11 @@ public class NetworkCharacterMovement : Photon.MonoBehaviour {
 	Quaternion realRotation = Quaternion.identity;
     Vector3 realVelocity = Vector3.zero;
 	private string url = "http://oamkpo2016.esy.es/kills";
-	private bool respawned = false;
+	private bool respawned = true;
 
 	// Use this for initialization
 	void Start () {
-		respawned = false;
+		//respawned = false;
 	}
 	// Update is called once per frame
 	void Update () {
@@ -41,10 +41,6 @@ public class NetworkCharacterMovement : Photon.MonoBehaviour {
 		respawned = true;
 	}
 
-	public void sendKill() {
-		StartCoroutine (PostKill ());
-	}
-
 	public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
         if(stream.isWriting){
 			//our player
@@ -63,9 +59,12 @@ public class NetworkCharacterMovement : Photon.MonoBehaviour {
 	}
 
 	IEnumerator PostDeath() {
-		WWWForm wwwForm = new WWWForm ();
+        Debug.Log("Osumia: " + GetComponent<FiringWeapons>().hitCount);
+        WWWForm wwwForm = new WWWForm ();
 		wwwForm.AddField ("ID", GetComponent<ChatManager> ().id.ToString ());
 		wwwForm.AddField ("killed", "1");
+        wwwForm.AddField("hits", GetComponent<FiringWeapons>().hitCount);
+        GetComponent<FiringWeapons>().hitCount = 0;
 		WWW hs_post = new WWW (url, wwwForm);
 		yield return hs_post;
 		if (hs_post.error != null) {
@@ -73,15 +72,6 @@ public class NetworkCharacterMovement : Photon.MonoBehaviour {
 		}
 	}
 
-	IEnumerator PostKill() {
-		WWWForm wwwForm = new WWWForm ();
-		wwwForm.AddField ("ID", GetComponent<ChatManager> ().id.ToString ());
-		wwwForm.AddField ("kills", "1");
-		WWW hs_post = new WWW (url, wwwForm);
-		yield return hs_post;
-		if (hs_post.error != null) {
-			Debug.Log ("Error posting data to database: " + hs_post.error);
-		}
-	}
+
 	
 }
