@@ -1,7 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class FiringWeapons : MonoBehaviour {
+public class FiringWeapons : MonoBehaviour
+{
+    /* Weapon soundeffects */
+    public AudioSource gunshot;
+    public AudioSource missileshot;
 
     public GameObject bullet;
     public GameObject missile;
@@ -31,18 +35,17 @@ public class FiringWeapons : MonoBehaviour {
     private bool bKilled = true;
 
     public int hitCount = 0;
-	public int killCount = 0;
+    public int killCount = 0;
     public int fireCount = 0;
 
     PhotonView photonView;
 
-    
+
 
     // Use this for initialization
-    void Start () {
-                photonView = PhotonView.Get(this);
-
-
+    void Start()
+    {
+        photonView = PhotonView.Get(this);
 
 
 
@@ -60,14 +63,15 @@ public class FiringWeapons : MonoBehaviour {
         itemrate = 1.0f;
         autofire = false;
 
-        if(this.gameObject.tag == "Turret")
+        if (this.gameObject.tag == "Turret")
         {
             isEnemy = true;
         }
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update()
+    {
         if (autofire && Time.time > nextfire)
         {
             Instantiate(bullet, bulletpointleft.position, bulletpointleft.rotation);
@@ -75,20 +79,21 @@ public class FiringWeapons : MonoBehaviour {
             nextfire = Time.time + firerate;
 
         }
-		if (bullet != null) {
-			bullet.GetComponent<BulletMove> ().firedPlayer = gameObject;
-			missile.GetComponent<MissileMove> ().firedPlayer = gameObject;
-		}
+        if (bullet != null)
+        {
+            bullet.GetComponent<BulletMove>().firedPlayer = gameObject;
+            missile.GetComponent<MissileMove>().firedPlayer = gameObject;
+        }
 
 
 
     }
 
 
-	public void addHit()
+    public void addHit()
     {
-		hitCount++;
-	}
+        hitCount++;
+    }
 
     public void addFire(int iFired)
     {
@@ -105,7 +110,7 @@ public class FiringWeapons : MonoBehaviour {
             StartCoroutine(PostKill());
             bKilled = false;
         }
-	}
+    }
 
     public void InitiateStandardShoot(float rateForFire, string modeForFire)
     {
@@ -116,14 +121,23 @@ public class FiringWeapons : MonoBehaviour {
 
     private void StandardShoot()
     {
-        if (Time.time > nextfire) {
-            if (firemode == "standard") {
-                //instanceofcreatedprojectileleft = Instantiate(bullet, bulletpointleft.position, bulletpointleft.rotation) as GameObject;
-                //instanceofcreatedprojectileright = Instantiate(bullet, bulletpointright.position, bulletpointright.rotation) as GameObject;
+        if (Time.time > nextfire)
+        {
 
-                photonView.RPC("BulletFX", PhotonTargets.All, bulletpointright.position, bulletpointright.rotation);
-                photonView.RPC("BulletFX", PhotonTargets.All, bulletpointleft.position, bulletpointleft.rotation);
-                
+            gunshot.Play();
+            if (firemode == "standard")
+            {
+
+                if (SceneManagerHelper.ActiveSceneName == "SPlevel" || SceneManagerHelper.ActiveSceneName == "Tutorial")
+                {
+                    instanceofcreatedprojectileleft = Instantiate(bullet, bulletpointleft.position, bulletpointleft.rotation) as GameObject;
+                    instanceofcreatedprojectileright = Instantiate(bullet, bulletpointright.position, bulletpointright.rotation) as GameObject;
+                }
+                else
+                {
+                    photonView.RPC("BulletFX", PhotonTargets.All, bulletpointright.position, bulletpointright.rotation);
+                    photonView.RPC("BulletFX", PhotonTargets.All, bulletpointleft.position, bulletpointleft.rotation);
+                }
                 if (isEnemy)
                 {
                     instanceofcreatedprojectileleft.GetComponent<BulletMove>().EnemyShotThisProjectile();
@@ -170,10 +184,19 @@ public class FiringWeapons : MonoBehaviour {
     {
         if (Time.time > nextmissile)
         {
+            missileshot.Play();
 
-            photonView.RPC("MissileFX", PhotonTargets.All, missilepoint.position, missilepoint.rotation);
-            nextmissile = Time.time + missilerate;
-            addFire(1);
+            if (SceneManagerHelper.ActiveSceneName == "SPlevel" || SceneManagerHelper.ActiveSceneName == "Tutorial")
+            {
+                Instantiate(missile, missilepoint.position, missilepoint.rotation);
+                nextmissile = Time.time + missilerate;
+            }
+            else
+            {
+                photonView.RPC("MissileFX", PhotonTargets.All, missilepoint.position, missilepoint.rotation);
+                nextmissile = Time.time + missilerate;
+                addFire(1);
+            }
         }
     }
 
@@ -183,7 +206,8 @@ public class FiringWeapons : MonoBehaviour {
         {
             Instantiate(flare, missilepoint.position, missilepoint.rotation);
             nextitem = Time.time + itemrate;
-        }else if (Time.time > nextitem && itemname == "emp")
+        }
+        else if (Time.time > nextitem && itemname == "emp")
         {
             Instantiate(emp, playerpoint.position, playerpoint.rotation);
             nextitem = Time.time + itemrate;

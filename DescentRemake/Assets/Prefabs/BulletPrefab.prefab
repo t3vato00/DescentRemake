@@ -197,7 +197,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullethiteffect: {fileID: 100322, guid: cceb198aecb0afb47acf28ccef1b96eb, type: 2}
   speed: 1000
-  bulletDamage: 5
+  bulletDamage: 20
   firedPlayer: {fileID: 0}
 --- !u!198 &19855144
 ParticleSystem:
@@ -1777,6 +1777,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: bulletDamage
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
