@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class BulletMove : MonoBehaviour {
 
@@ -77,14 +78,24 @@ public class BulletMove : MonoBehaviour {
 			if (enemy != null) {
                 if (col.tag == "Player")
                 {
-                    enemy.GetComponent<PhotonView>().RPC("takeDmg", PhotonTargets.AllBuffered, bulletDamage);
-                    firedPlayer.GetComponent<FiringWeapons>().addHit();
-
-                    if (enemy.GetComponent<HealthShield>().health < 0)
+                    if (SceneManagerHelper.ActiveSceneName == "MultiplayerMap1")
                     {
-                        firedPlayer.GetComponent<FiringWeapons>().addKill();
-                    }
+                        enemy.GetComponent<PhotonView>().RPC("takeDmg", PhotonTargets.AllBuffered, bulletDamage);
+                        firedPlayer.GetComponent<FiringWeapons>().addHit();
 
+                        if (enemy.GetComponent<HealthShield>().health < 0)
+                        {
+                            firedPlayer.GetComponent<FiringWeapons>().addKill();
+                        }
+                    }
+                    else
+                    {
+                        enemy.takeDmg(bulletDamage);
+                        if(enemy.health <= 0)
+                        {
+                            SceneManager.LoadScene("Menu");
+                        }
+                    }
                 }
                 else
                 {
